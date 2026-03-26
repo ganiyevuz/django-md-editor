@@ -1,0 +1,55 @@
+from unittest.mock import patch
+
+from django.core.exceptions import ValidationError
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase, override_settings
+
+from django_md_editor.uploads import BaseUploadHandler, DefaultUploadHandler
+
+
+class BaseUploadHandlerTests(TestCase):
+    def test_save_raises_not_implemented(self):
+        handler = BaseUploadHandler()
+        with self.assertRaises(NotImplementedError):
+            handler.save(None)
+
+    def test_validate_does_nothing_by_default(self):
+        handler = BaseUploadHandler()
+        handler.validate(None)  # Should not raise
+
+
+class DefaultUploadHandlerTests(TestCase):
+    def test_validate_accepts_allowed_type(self):
+        handler = DefaultUploadHandler()
+        file = SimpleUploadedFile("test.png", b"fake-png", content_type="image/png")
+        handler.validate(file)  # Should not raise
+
+    def test_validate_rejects_disallowed_type(self):
+        handler = DefaultUploadHandler()
+        file = SimpleUploadedFile(
+            "test.exe", b"fake-exe", content_type="application/exe"
+        )
+        with self.assertRaises(ValidationError) as ctx:
+            handler.validate(file)
+        assert "File type" in str(ctx.exception)
+
+    @override_settings(MD_EDITOR={"MAX_UPLOAD_SIZE": 100})
+    def test_validate_rejects_oversized_file(self):
+        handler = DefaultUploadHandler()
+        content = b"x" * 200
+        file = SimpleUploadedFile("big.png", content, content_type="image/png")
+        with self.assertRaises(ValidationError) as ctx:
+            handler.validate(file)
+        assert "File size" in str(ctx.exception)
+
+    @patch("django_md_editor.uploads.default_storage")
+    def test_save_stores_file_and_returns_url(self, mock_storage):
+        mock_storage.save.return_value = "md-editor/uploads/2026/03/test.png"
+        mock_storage.url.return_value = "/media/md-editor/uploads/2026/03/test.png"
+
+        handler = DefaultUploadHandler()
+        file = SimpleUploadedFile("test.png", b"fake-png", content_type="image/png")
+        url = handler.save(file)
+
+        assert url == "/media/md-editor/uploads/2026/03/test.png"
+        mock_storage.save.assert_called_once()
