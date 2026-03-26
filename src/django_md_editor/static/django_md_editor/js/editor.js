@@ -5,21 +5,25 @@
   // 1. TOOLBAR_BUTTONS
   // ---------------------------------------------------------------------------
   const TOOLBAR_BUTTONS = {
-    heading: { icon: "H", title: "Heading", action: "heading" },
-    bold: { icon: "B", title: "Bold (Ctrl+B)", action: "bold", style: "font-weight:bold" },
-    italic: { icon: "I", title: "Italic (Ctrl+I)", action: "italic", style: "font-style:italic" },
-    quote: { icon: "\u201C\u201D", title: "Quote (Ctrl+Shift+.)", action: "quote" },
-    code: { icon: "&lt;/&gt;", title: "Code (Ctrl+E)", action: "code" },
-    link: { icon: "\uD83D\uDD17", title: "Link (Ctrl+K)", action: "link" },
-    "ordered-list": { icon: "1.", title: "Ordered List (Ctrl+Shift+7)", action: "ordered-list" },
-    "unordered-list": { icon: "\u2022", title: "Unordered List (Ctrl+Shift+8)", action: "unordered-list" },
-    "task-list": { icon: "\u2611", title: "Task List", action: "task-list" },
-    attach: { icon: "\uD83D\uDCCE", title: "Attach File", action: "attach" },
-    mention: { icon: "@", title: "Mention", action: "mention" },
-    ref: { icon: "#", title: "Reference", action: "ref" },
-    undo: { icon: "\u21A9", title: "Undo (Ctrl+Z)", action: "undo", align: "right" },
-    redo: { icon: "\u21AA", title: "Redo (Ctrl+Shift+Z)", action: "redo", align: "right" },
-    fullscreen: { icon: "\u26F6", title: "Fullscreen", action: "fullscreen", align: "right" },
+    heading: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M3.75 2a.75.75 0 0 1 .75.75V7h7V2.75a.75.75 0 0 1 1.5 0v10.5a.75.75 0 0 1-1.5 0V8.5h-7v4.75a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 3.75 2Z"/></svg>', title: "Heading", action: "heading" },
+    bold: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M4 2h4.5a3.501 3.501 0 0 1 2.852 5.53A3.499 3.499 0 0 1 9.5 14H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm1 7v3h4.5a1.5 1.5 0 0 0 0-3Zm3.5-2a1.5 1.5 0 0 0 0-3H5v3Z"/></svg>', title: "Bold (Ctrl+B)", action: "bold" },
+    italic: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M6 2.75A.75.75 0 0 1 6.75 2h6.5a.75.75 0 0 1 0 1.5h-2.505l-3.858 9H9.25a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5h2.505l3.858-9H6.75A.75.75 0 0 1 6 2.75Z"/></svg>', title: "Italic (Ctrl+I)", action: "italic" },
+    strikethrough: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M7.581 3.25c-2.036 0-2.778 1.082-2.778 1.786 0 .055.002.107.006.157a.75.75 0 0 1-1.496.114 3.56 3.56 0 0 1-.01-.271c0-1.832 1.75-3.286 4.278-3.286 1.418 0 2.721.58 3.514 1.093a.75.75 0 0 1-.814 1.26c-.64-.414-1.662-.853-2.7-.853Zm3.474 4.25h1.195a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1 0-1.5h4.411c-.278-.09-.547-.194-.795-.31-.869-.409-1.56-.983-1.965-1.69H7.94c.263.395.678.722 1.204.983.551.272 1.21.467 1.911.517ZM8.012 12.75c1.648 0 2.86-.725 2.86-1.652 0-.107-.016-.222-.048-.339a.75.75 0 0 1 1.452-.376c.058.224.096.46.096.715 0 2.012-2.163 3.152-4.36 3.152-1.39 0-2.728-.473-3.614-1.236a.75.75 0 0 1 .985-1.13c.606.527 1.593.866 2.629.866Z"/></svg>', title: "Strikethrough", action: "strikethrough" },
+    quote: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1.75 2.5h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z"/></svg>', title: "Quote (Ctrl+Shift+.)", action: "quote" },
+    code: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"/></svg>', title: "Code (Ctrl+E)", action: "code" },
+    link: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></svg>', title: "Link (Ctrl+K)", action: "link" },
+    image: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M16 13.25A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75ZM1.75 2.5a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h.94l4.72-6.03a.75.75 0 0 1 1.18 0l4.72 6.03h.94a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM5.5 6a1.5 1.5 0 1 1-3.001-.001A1.5 1.5 0 0 1 5.5 6Z"/></svg>', title: "Image", action: "image" },
+    "ordered-list": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M5 3.25a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 5 3.25Zm0 5a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 5 8.25Zm0 5a.75.75 0 0 1 .75-.75h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1-.75-.75ZM.924 10.32a.5.5 0 0 1-.851-.076l-.025-.059a.5.5 0 0 1 .09-.47l1.5-1.836a.5.5 0 0 1 .362-.179h.168a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-2.957l-.744.907Zm-.009-7.378a.5.5 0 0 1 .5-.442h.166a.5.5 0 0 1 .5.5v4a.5.5 0 1 1-1 0V4.18l-.747.912a.5.5 0 0 1-.768-.64l1.35-1.51Z"/></svg>', title: "Ordered List (Ctrl+Shift+7)", action: "ordered-list" },
+    "unordered-list": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M5.75 2.5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5Zm0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5ZM2 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-6a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM2 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>', title: "Unordered List (Ctrl+Shift+8)", action: "unordered-list" },
+    "task-list": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm10.97 6.97 2 2a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06l1.47 1.47 3.72-3.72a.75.75 0 0 1 1.06 0ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2.5a.75.75 0 0 1 0 1.5h-2.5A.75.75 0 0 1 4 7.75Z"/></svg>', title: "Task List", action: "task-list" },
+    "horizontal-rule": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 7.75A.75.75 0 0 1 .75 7h14.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 7.75Z"/></svg>', title: "Horizontal Rule", action: "horizontal-rule" },
+    table: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v3h3v-3Zm3-1.5v-3h-3v3Zm1.5 1.5v3H14v-3Zm0-1.5V2h-3v3ZM6.5 11v3h3v-3Zm1.5-9.5v3H14v-3Zm-6 6h3v-3H2Zm0 1.5v3h3v-3Zm0-6v3h3V2Z"/></svg>', title: "Table", action: "table" },
+    attach: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M12.212 3.02a1.753 1.753 0 0 0-2.478.003l-5.83 5.83a3.007 3.007 0 0 0-.88 2.127c0 .795.315 1.551.88 2.116a2.996 2.996 0 0 0 4.243 0l5.113-5.113a.75.75 0 0 1 1.06 1.06L9.207 14.16a4.506 4.506 0 0 1-6.364 0 4.496 4.496 0 0 1-1.318-3.187A4.506 4.506 0 0 1 2.843 7.79l5.83-5.83a3.003 3.003 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-5.83 5.83a1.503 1.503 0 0 1-2.122 0 1.503 1.503 0 0 1 0-2.122l5.113-5.113a.75.75 0 0 1 1.06 1.06l-5.113 5.113a.003.003 0 0 0 0 .002.002.002 0 0 0 .002 0l5.83-5.83a1.503 1.503 0 0 0 0-2.123Z"/></svg>', title: "Attach File", action: "attach" },
+    mention: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M4.75 7.5A3.25 3.25 0 0 1 8 4.25a3.25 3.25 0 0 1 3.25 3.25v.583c0 .478-.387.917-.917.917a.916.916 0 0 1-.916-.917V5.167a.75.75 0 0 0-1.5 0v.034A3.21 3.21 0 0 0 6.25 4.75a2.75 2.75 0 0 0 0 5.5c.843 0 1.595-.377 2.1-.975.385.52.97.892 1.65.975v.5A4.75 4.75 0 1 1 12.75 6v1.5c0 1.175-.775 2.167-1.867 2.417A3.24 3.24 0 0 1 8 12.25a3.25 3.25 0 0 1-3.25-3.25V7.5Zm1.5 0a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0Z"/></svg>', title: "Mention", action: "mention" },
+    ref: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>', title: "Reference", action: "ref" },
+    undo: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1.22 6.28a.749.749 0 0 1 0-1.06l3.5-3.5a.749.749 0 1 1 1.06 1.06L3.561 5h7.188a4.75 4.75 0 0 1 0 9.5H5.75a.75.75 0 0 1 0-1.5h4.999a3.25 3.25 0 0 0 0-6.5H3.561l2.22 2.22a.749.749 0 1 1-1.06 1.06Z"/></svg>', title: "Undo (Ctrl+Z)", action: "undo", align: "right" },
+    redo: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M14.78 6.28a.749.749 0 0 0 0-1.06l-3.5-3.5a.749.749 0 1 0-1.06 1.06L12.439 5H5.25a4.75 4.75 0 0 0 0 9.5h4.999a.75.75 0 0 0 0-1.5H5.25a3.25 3.25 0 0 1 0-6.5h7.189l-2.22 2.22a.749.749 0 1 0 1.06 1.06Z"/></svg>', title: "Redo (Ctrl+Shift+Z)", action: "redo", align: "right" },
+    fullscreen: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1.75 10a.75.75 0 0 1 .75.75v2.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 0 1.5h-2.5A1.75 1.75 0 0 1 1 13.25v-2.5a.75.75 0 0 1 .75-.75Zm12.5 0a.75.75 0 0 1 .75.75v2.5A1.75 1.75 0 0 1 13.25 15h-2.5a.75.75 0 0 1 0-1.5h2.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 .75-.75ZM2.75 1h2.5a.75.75 0 0 1 0 1.5h-2.5a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0v-2.5C1 1.784 1.784 1 2.75 1Zm10.5 0A1.75 1.75 0 0 1 15 2.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.25.25 0 0 0-.25-.25h-2.5a.75.75 0 0 1 0-1.5Z"/></svg>', title: "Fullscreen", action: "fullscreen", align: "right" },
     separator: { type: "separator" },
   };
 
@@ -219,6 +223,9 @@
       case "italic":
         wrapSelection(textarea, "_", "_");
         break;
+      case "strikethrough":
+        wrapSelection(textarea, "~~", "~~");
+        break;
       case "quote":
         wrapLines(textarea, "> ");
         break;
@@ -228,6 +235,9 @@
       case "link":
         insertLink(textarea);
         break;
+      case "image":
+        insertImage(textarea);
+        break;
       case "ordered-list":
         wrapLines(textarea, "1. ");
         break;
@@ -236,6 +246,12 @@
         break;
       case "task-list":
         wrapLines(textarea, "- [ ] ");
+        break;
+      case "horizontal-rule":
+        insertAtCursor(textarea, "\n---\n");
+        break;
+      case "table":
+        insertAtCursor(textarea, "\n| Header | Header |\n| ------ | ------ |\n| Cell   | Cell   |\n");
         break;
       case "attach":
         if (fileInput) fileInput.click();
@@ -389,6 +405,30 @@
       textarea.value = value.substring(0, start) + inserted + value.substring(end);
       // Select "text"
       textarea.selectionStart = start + 1;
+      textarea.selectionEnd = start + 5;
+    }
+    triggerInput(textarea);
+  }
+
+  function insertImage(textarea) {
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const value = textarea.value;
+    const selected = value.substring(start, end);
+
+    if (selected) {
+      // Selected text becomes alt text
+      const inserted = "![" + selected + "](url)";
+      textarea.value = value.substring(0, start) + inserted + value.substring(end);
+      // Place cursor on "url"
+      const urlStart = start + selected.length + 4;
+      textarea.selectionStart = urlStart;
+      textarea.selectionEnd = urlStart + 3;
+    } else {
+      const inserted = "![alt](url)";
+      textarea.value = value.substring(0, start) + inserted + value.substring(end);
+      // Select "alt"
+      textarea.selectionStart = start + 2;
       textarea.selectionEnd = start + 5;
     }
     triggerInput(textarea);
