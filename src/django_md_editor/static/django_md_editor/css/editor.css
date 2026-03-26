@@ -1,0 +1,483 @@
+/* =========================================================
+   Django Markdown Editor — GitHub-style CSS
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   CSS Custom Properties — Light theme defaults
+   --------------------------------------------------------- */
+:root {
+  --md-bg: #ffffff;
+  --md-border: #d0d7de;
+  --md-text: #1f2328;
+  --md-text-muted: #656d76;
+  --md-toolbar-bg: #f6f8fa;
+  --md-toolbar-hover: #e8ebef;
+  --md-accent: #f78166;
+  --md-textarea-bg: #ffffff;
+  --md-preview-bg: #ffffff;
+  --md-code-bg: #f6f8fa;
+  --md-height: 300px;
+}
+
+/* ---------------------------------------------------------
+   Dark theme
+   --------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-bg: #0d1117;
+    --md-border: #30363d;
+    --md-text: #c9d1d9;
+    --md-text-muted: #8b949e;
+    --md-toolbar-bg: #161b22;
+    --md-toolbar-hover: #1c2128;
+    --md-textarea-bg: #0d1117;
+    --md-preview-bg: #0d1117;
+    --md-code-bg: #161b22;
+  }
+}
+
+/* ---------------------------------------------------------
+   Base font
+   --------------------------------------------------------- */
+.md-editor,
+.md-editor * {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif;
+  color: var(--md-text);
+}
+
+/* ---------------------------------------------------------
+   Container
+   --------------------------------------------------------- */
+.md-editor {
+  border: 1px solid var(--md-border);
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: var(--md-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------------------------------------------------
+   Tabs
+   --------------------------------------------------------- */
+.md-editor-tabs {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid var(--md-border);
+  background-color: var(--md-toolbar-bg);
+  padding: 0 8px;
+  gap: 0;
+}
+
+.md-editor-tab {
+  padding: 8px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--md-text-muted);
+  line-height: 1.5;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  margin-bottom: -1px;
+}
+
+.md-editor-tab:hover {
+  color: var(--md-text);
+}
+
+.md-editor-tab--active {
+  font-weight: 600;
+  color: var(--md-text);
+  border-bottom: 2px solid var(--md-accent);
+}
+
+/* ---------------------------------------------------------
+   Toolbar
+   --------------------------------------------------------- */
+.md-editor-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--md-border);
+  background-color: var(--md-toolbar-bg);
+  flex-wrap: wrap;
+}
+
+.md-editor-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--md-text-muted);
+  transition: background-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.md-editor-toolbar-btn:hover {
+  background-color: var(--md-toolbar-hover);
+  color: var(--md-text);
+}
+
+.md-editor-toolbar-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.md-editor-toolbar-separator {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background-color: var(--md-border);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.md-editor-toolbar-spacer {
+  flex: 1;
+}
+
+/* ---------------------------------------------------------
+   Panels
+   --------------------------------------------------------- */
+.md-editor-panel--active {
+  display: block;
+}
+
+.md-editor-panel--hidden {
+  display: none;
+}
+
+/* ---------------------------------------------------------
+   Textarea
+   --------------------------------------------------------- */
+.md-editor-textarea {
+  display: block;
+  width: 100%;
+  min-height: var(--md-height);
+  padding: 12px;
+  border: none;
+  outline: none;
+  resize: vertical;
+  background-color: var(--md-textarea-bg);
+  color: var(--md-text);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  tab-size: 4;
+}
+
+.md-editor-textarea::placeholder {
+  color: var(--md-text-muted);
+}
+
+/* ---------------------------------------------------------
+   Preview panel
+   --------------------------------------------------------- */
+.md-editor-preview {
+  min-height: var(--md-height);
+  padding: 16px 20px;
+  background-color: var(--md-preview-bg);
+}
+
+/* ---------------------------------------------------------
+   Preview content — GitHub Markdown styles
+   --------------------------------------------------------- */
+.md-editor-preview-content {
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  color: var(--md-text);
+}
+
+.md-editor-preview-content > *:first-child {
+  margin-top: 0;
+}
+
+.md-editor-preview-content > *:last-child {
+  margin-bottom: 0;
+}
+
+/* Headings */
+.md-editor-preview-content h1,
+.md-editor-preview-content h2,
+.md-editor-preview-content h3,
+.md-editor-preview-content h4,
+.md-editor-preview-content h5,
+.md-editor-preview-content h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--md-text);
+}
+
+.md-editor-preview-content h1 {
+  font-size: 2em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--md-border);
+}
+
+.md-editor-preview-content h2 {
+  font-size: 1.5em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--md-border);
+}
+
+.md-editor-preview-content h3 {
+  font-size: 1.25em;
+}
+
+.md-editor-preview-content h4 {
+  font-size: 1em;
+}
+
+.md-editor-preview-content h5 {
+  font-size: 0.875em;
+}
+
+.md-editor-preview-content h6 {
+  font-size: 0.85em;
+  color: var(--md-text-muted);
+}
+
+/* Paragraphs */
+.md-editor-preview-content p {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* Inline code */
+.md-editor-preview-content code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  white-space: break-spaces;
+  background-color: var(--md-code-bg);
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  color: var(--md-text);
+}
+
+/* Code blocks */
+.md-editor-preview-content pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: var(--md-code-bg);
+  border-radius: 6px;
+  word-wrap: normal;
+}
+
+.md-editor-preview-content pre code {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border-radius: 0;
+  white-space: pre;
+  word-break: normal;
+  font-size: 100%;
+}
+
+/* Blockquotes */
+.md-editor-preview-content blockquote {
+  margin: 0 0 16px 0;
+  padding: 0 1em;
+  color: var(--md-text-muted);
+  border-left: 4px solid var(--md-border);
+}
+
+.md-editor-preview-content blockquote > :first-child {
+  margin-top: 0;
+}
+
+.md-editor-preview-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Lists */
+.md-editor-preview-content ul,
+.md-editor-preview-content ol {
+  margin-top: 0;
+  margin-bottom: 16px;
+  padding-left: 2em;
+}
+
+.md-editor-preview-content ul ul,
+.md-editor-preview-content ul ol,
+.md-editor-preview-content ol ol,
+.md-editor-preview-content ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.md-editor-preview-content li {
+  margin-top: 0.25em;
+}
+
+.md-editor-preview-content li + li {
+  margin-top: 0.25em;
+}
+
+/* Task list / checkboxes */
+.md-editor-preview-content ul.contains-task-list,
+.md-editor-preview-content ol.contains-task-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.md-editor-preview-content li.task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.md-editor-preview-content li.task-list-item input[type="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+/* Tables */
+.md-editor-preview-content table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+  margin-bottom: 16px;
+}
+
+.md-editor-preview-content table th,
+.md-editor-preview-content table td {
+  padding: 6px 13px;
+  border: 1px solid var(--md-border);
+}
+
+.md-editor-preview-content table th {
+  font-weight: 600;
+  background-color: var(--md-toolbar-bg);
+}
+
+.md-editor-preview-content table tr:nth-child(2n) td {
+  background-color: var(--md-toolbar-bg);
+}
+
+/* Images */
+.md-editor-preview-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-sizing: content-box;
+}
+
+/* Links */
+.md-editor-preview-content a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.md-editor-preview-content a:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  .md-editor-preview-content a {
+    color: #58a6ff;
+  }
+}
+
+/* Horizontal rule */
+.md-editor-preview-content hr {
+  height: 4px;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--md-border);
+  border: 0;
+  border-radius: 2px;
+}
+
+/* ---------------------------------------------------------
+   Footer
+   --------------------------------------------------------- */
+.md-editor-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-top: 1px solid var(--md-border);
+  background-color: var(--md-toolbar-bg);
+  font-size: 12px;
+  color: var(--md-text-muted);
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.md-editor-footer-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.md-editor-footer-upload {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.md-editor-footer-upload:hover {
+  color: var(--md-text);
+}
+
+/* ---------------------------------------------------------
+   Fullscreen mode
+   --------------------------------------------------------- */
+.md-editor--fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  border-radius: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.md-editor--fullscreen .md-editor-textarea,
+.md-editor--fullscreen .md-editor-preview {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ---------------------------------------------------------
+   Drag-over state
+   --------------------------------------------------------- */
+.md-editor--dragover {
+  outline: 2px dashed var(--md-accent);
+  outline-offset: -2px;
+}
