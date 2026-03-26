@@ -8,7 +8,7 @@ DEFAULTS = {
         "quote", "code", "code-block", "link", "image", "separator",
         "ordered-list", "unordered-list", "task-list", "separator",
         "horizontal-rule", "table", "details", "separator",
-        "highlight", "superscript", "subscript", "footnote", "separator",
+        "highlight", "superscript", "subscript", "separator",
         "attach", "mention", "ref", "separator",
         "undo", "redo", "fullscreen",
     ],
