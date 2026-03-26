@@ -1,0 +1,27 @@
+{% load md_editor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ post.title }}</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    h1 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+    .meta { color: #666; margin-bottom: 24px; }
+    .content { line-height: 1.7; }
+    .content h1, .content h2, .content h3 { margin-top: 1.5em; }
+    .content code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+    .content pre { background: #f4f4f4; padding: 16px; border-radius: 4px; overflow-x: auto; }
+    .content blockquote { border-left: 4px solid #ddd; margin: 0; padding-left: 16px; color: #555; }
+    a { color: #0066cc; }
+  </style>
+</head>
+<body>
+  <a href="{% url 'posts:list' %}">&larr; Back to list</a>
+  <h1>{{ post.title }}</h1>
+  <p class="meta">Created: {{ post.created_at }}</p>
+  <div class="content">
+    {% markdown post.content %}
+  </div>
+</body>
+</html>
