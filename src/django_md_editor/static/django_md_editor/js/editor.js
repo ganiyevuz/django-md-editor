@@ -5,7 +5,10 @@
   // 1. TOOLBAR_BUTTONS
   // ---------------------------------------------------------------------------
   const TOOLBAR_BUTTONS = {
-    heading: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M3.75 2a.75.75 0 0 1 .75.75V7h7V2.75a.75.75 0 0 1 1.5 0v10.5a.75.75 0 0 1-1.5 0V8.5h-7v4.75a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 3.75 2Z"/></svg>', title: "Heading", action: "heading" },
+    heading: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M3.75 2a.75.75 0 0 1 .75.75V7h7V2.75a.75.75 0 0 1 1.5 0v10.5a.75.75 0 0 1-1.5 0V8.5h-7v4.75a.75.75 0 0 1-1.5 0V2.75A.75.75 0 0 1 3.75 2Z"/></svg>', title: "Heading (cycles H1–H6)", action: "heading" },
+    h1: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><text x="1" y="13" font-size="13" font-weight="bold" font-family="sans-serif" fill="currentColor">H1</text></svg>', title: "Heading 1", action: "h1" },
+    h2: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><text x="1" y="13" font-size="13" font-weight="bold" font-family="sans-serif" fill="currentColor">H2</text></svg>', title: "Heading 2", action: "h2" },
+    h3: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><text x="1" y="13" font-size="13" font-weight="bold" font-family="sans-serif" fill="currentColor">H3</text></svg>', title: "Heading 3", action: "h3" },
     bold: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M4 2h4.5a3.501 3.501 0 0 1 2.852 5.53A3.499 3.499 0 0 1 9.5 14H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Zm1 7v3h4.5a1.5 1.5 0 0 0 0-3Zm3.5-2a1.5 1.5 0 0 0 0-3H5v3Z"/></svg>', title: "Bold (Ctrl+B)", action: "bold" },
     italic: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M6 2.75A.75.75 0 0 1 6.75 2h6.5a.75.75 0 0 1 0 1.5h-2.505l-3.858 9H9.25a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5h2.505l3.858-9H6.75A.75.75 0 0 1 6 2.75Z"/></svg>', title: "Italic (Ctrl+I)", action: "italic" },
     strikethrough: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M7.581 3.25c-2.036 0-2.778 1.082-2.778 1.786 0 .055.002.107.006.157a.75.75 0 0 1-1.496.114 3.56 3.56 0 0 1-.01-.271c0-1.832 1.75-3.286 4.278-3.286 1.418 0 2.721.58 3.514 1.093a.75.75 0 0 1-.814 1.26c-.64-.414-1.662-.853-2.7-.853Zm3.474 4.25h1.195a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1 0-1.5h4.411c-.278-.09-.547-.194-.795-.31-.869-.409-1.56-.983-1.965-1.69H7.94c.263.395.678.722 1.204.983.551.272 1.21.467 1.911.517ZM8.012 12.75c1.648 0 2.86-.725 2.86-1.652 0-.107-.016-.222-.048-.339a.75.75 0 0 1 1.452-.376c.058.224.096.46.096.715 0 2.012-2.163 3.152-4.36 3.152-1.39 0-2.728-.473-3.614-1.236a.75.75 0 0 1 .985-1.13c.606.527 1.593.866 2.629.866Z"/></svg>', title: "Strikethrough", action: "strikethrough" },
@@ -18,6 +21,13 @@
     "task-list": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm10.97 6.97 2 2a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06l1.47 1.47 3.72-3.72a.75.75 0 0 1 1.06 0ZM4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM4 7.75A.75.75 0 0 1 4.75 7h2.5a.75.75 0 0 1 0 1.5h-2.5A.75.75 0 0 1 4 7.75Z"/></svg>', title: "Task List", action: "task-list" },
     "horizontal-rule": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 7.75A.75.75 0 0 1 .75 7h14.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 7.75Z"/></svg>', title: "Horizontal Rule", action: "horizontal-rule" },
     table: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v3h3v-3Zm3-1.5v-3h-3v3Zm1.5 1.5v3H14v-3Zm0-1.5V2h-3v3ZM6.5 11v3h3v-3Zm1.5-9.5v3H14v-3Zm-6 6h3v-3H2Zm0 1.5v3h3v-3Zm0-6v3h3V2Z"/></svg>', title: "Table", action: "table" },
+    "code-block": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25Zm7.47 3.97a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06l-2.25 2.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L10.94 8 9.22 6.28a.75.75 0 0 1 0-1.06ZM6.78 6.28 5.06 8l1.72 1.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-2.25-2.25a.75.75 0 0 1 0-1.06l2.25-2.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"/></svg>', title: "Code Block", action: "code-block" },
+    highlight: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M3.5 11h2.044a1.5 1.5 0 0 0 1.06-.44L12.81 4.355a1.5 1.5 0 0 0 0-2.121l-.586-.586a1.5 1.5 0 0 0-2.122 0L3.94 7.854A1.5 1.5 0 0 0 3.5 8.914V11Zm1.5-2.086 5.5-5.5.586.586-5.5 5.5H5V8.914ZM1.75 13h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"/></svg>', title: "Highlight", action: "highlight" },
+    "line-break": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M2.75 2a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5Zm0 4a.75.75 0 0 0 0 1.5h10.5a2.75 2.75 0 0 1 0 5.5H5.81l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-3.5-3.5a.75.75 0 0 1 0-1.06l3.5-3.5a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L5.81 11.5h7.44a1.25 1.25 0 0 0 0-2.5H2.75a.75.75 0 0 0 0-1.5Z"/></svg>', title: "Line Break", action: "line-break" },
+    footnote: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 13.25 15H2.75A1.75 1.75 0 0 1 1 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM5 5.75A.75.75 0 0 1 5.75 5h.5a.75.75 0 0 1 .75.75v3.5h.5a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.5v-2.5h-.25A.75.75 0 0 1 5 5.75Z"/></svg>', title: "Footnote", action: "footnote" },
+    superscript: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><text x="0" y="13" font-size="12" font-weight="bold" font-family="sans-serif" fill="currentColor">X</text><text x="10" y="7" font-size="8" font-weight="bold" font-family="sans-serif" fill="currentColor">2</text></svg>', title: "Superscript", action: "superscript" },
+    subscript: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><text x="0" y="11" font-size="12" font-weight="bold" font-family="sans-serif" fill="currentColor">X</text><text x="10" y="15" font-size="8" font-weight="bold" font-family="sans-serif" fill="currentColor">2</text></svg>', title: "Subscript", action: "subscript" },
+    "details": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25ZM8 10a.75.75 0 0 1-.53-.22l-2.5-2.5a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L8 8.19l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734l-2.5 2.5A.75.75 0 0 1 8 10Z"/></svg>', title: "Collapsible Section", action: "details" },
     attach: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M12.212 3.02a1.753 1.753 0 0 0-2.478.003l-5.83 5.83a3.007 3.007 0 0 0-.88 2.127c0 .795.315 1.551.88 2.116a2.996 2.996 0 0 0 4.243 0l5.113-5.113a.75.75 0 0 1 1.06 1.06L9.207 14.16a4.506 4.506 0 0 1-6.364 0 4.496 4.496 0 0 1-1.318-3.187A4.506 4.506 0 0 1 2.843 7.79l5.83-5.83a3.003 3.003 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-5.83 5.83a1.503 1.503 0 0 1-2.122 0 1.503 1.503 0 0 1 0-2.122l5.113-5.113a.75.75 0 0 1 1.06 1.06l-5.113 5.113a.003.003 0 0 0 0 .002.002.002 0 0 0 .002 0l5.83-5.83a1.503 1.503 0 0 0 0-2.123Z"/></svg>', title: "Attach File", action: "attach" },
     mention: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M4.75 7.5A3.25 3.25 0 0 1 8 4.25a3.25 3.25 0 0 1 3.25 3.25v.583c0 .478-.387.917-.917.917a.916.916 0 0 1-.916-.917V5.167a.75.75 0 0 0-1.5 0v.034A3.21 3.21 0 0 0 6.25 4.75a2.75 2.75 0 0 0 0 5.5c.843 0 1.595-.377 2.1-.975.385.52.97.892 1.65.975v.5A4.75 4.75 0 1 1 12.75 6v1.5c0 1.175-.775 2.167-1.867 2.417A3.24 3.24 0 0 1 8 12.25a3.25 3.25 0 0 1-3.25-3.25V7.5Zm1.5 0a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0Z"/></svg>', title: "Mention", action: "mention" },
     ref: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>', title: "Reference", action: "ref" },
@@ -215,7 +225,16 @@
   function handleAction(action, textarea, container, fileInput, uploadUrl) {
     switch (action) {
       case "heading":
+        cycleHeading(textarea);
+        break;
+      case "h1":
         wrapLines(textarea, "# ");
+        break;
+      case "h2":
+        wrapLines(textarea, "## ");
+        break;
+      case "h3":
+        wrapLines(textarea, "### ");
         break;
       case "bold":
         wrapSelection(textarea, "**", "**");
@@ -252,6 +271,27 @@
         break;
       case "table":
         insertAtCursor(textarea, "\n| Header | Header |\n| ------ | ------ |\n| Cell   | Cell   |\n");
+        break;
+      case "code-block":
+        insertAtCursor(textarea, "\n```\n\n```\n");
+        break;
+      case "highlight":
+        wrapSelection(textarea, "==", "==");
+        break;
+      case "line-break":
+        insertAtCursor(textarea, "  \n");
+        break;
+      case "footnote":
+        insertFootnote(textarea);
+        break;
+      case "superscript":
+        wrapSelection(textarea, "<sup>", "</sup>");
+        break;
+      case "subscript":
+        wrapSelection(textarea, "<sub>", "</sub>");
+        break;
+      case "details":
+        insertDetails(textarea);
         break;
       case "attach":
         if (fileInput) fileInput.click();
@@ -431,6 +471,65 @@
       textarea.selectionStart = start + 2;
       textarea.selectionEnd = start + 5;
     }
+    triggerInput(textarea);
+  }
+
+  function cycleHeading(textarea) {
+    var start = textarea.selectionStart;
+    var value = textarea.value;
+    var lineStart = value.lastIndexOf("\n", start - 1) + 1;
+    var lineEnd = value.indexOf("\n", start);
+    if (lineEnd === -1) lineEnd = value.length;
+    var line = value.substring(lineStart, lineEnd);
+
+    var match = line.match(/^(#{1,6})\s/);
+    if (match) {
+      var level = match[1].length;
+      if (level >= 6) {
+        // Remove heading
+        var newLine = line.replace(/^#{1,6}\s/, "");
+        textarea.value = value.substring(0, lineStart) + newLine + value.substring(lineEnd);
+      } else {
+        // Increase level
+        var newLine = "#" + line;
+        textarea.value = value.substring(0, lineStart) + newLine + value.substring(lineEnd);
+      }
+    } else {
+      // Add H1
+      var newLine = "# " + line;
+      textarea.value = value.substring(0, lineStart) + newLine + value.substring(lineEnd);
+    }
+    textarea.selectionStart = lineStart;
+    textarea.selectionEnd = lineStart;
+    triggerInput(textarea);
+  }
+
+  function insertFootnote(textarea) {
+    var start = textarea.selectionStart;
+    var value = textarea.value;
+    // Find existing footnotes to auto-number
+    var matches = value.match(/\[\^\d+\]/g);
+    var num = matches ? matches.length / 2 + 1 : 1;
+    var ref = "[^" + num + "]";
+    var def = "\n\n" + ref + ": ";
+    // Insert reference at cursor
+    textarea.value = value.substring(0, start) + ref + value.substring(start) + def;
+    textarea.selectionStart = start + ref.length + def.length;
+    textarea.selectionEnd = textarea.selectionStart;
+    triggerInput(textarea);
+  }
+
+  function insertDetails(textarea) {
+    var start = textarea.selectionStart;
+    var end = textarea.selectionEnd;
+    var value = textarea.value;
+    var selected = value.substring(start, end) || "Content here";
+    var block = "\n<details>\n<summary>Click to expand</summary>\n\n" + selected + "\n\n</details>\n";
+    textarea.value = value.substring(0, start) + block + value.substring(end);
+    // Select "Click to expand"
+    var summaryStart = start + "\n<details>\n<summary>".length;
+    textarea.selectionStart = summaryStart;
+    textarea.selectionEnd = summaryStart + "Click to expand".length;
     triggerInput(textarea);
   }
 

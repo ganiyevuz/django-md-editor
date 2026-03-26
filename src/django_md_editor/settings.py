@@ -5,9 +5,10 @@ DEFAULTS = {
     "UPLOAD_HANDLER_CLASS": "django_md_editor.uploads.DefaultUploadHandler",
     "TOOLBAR": [
         "heading", "bold", "italic", "strikethrough", "separator",
-        "quote", "code", "link", "image", "separator",
+        "quote", "code", "code-block", "link", "image", "separator",
         "ordered-list", "unordered-list", "task-list", "separator",
-        "horizontal-rule", "table", "separator",
+        "horizontal-rule", "table", "details", "separator",
+        "highlight", "superscript", "subscript", "footnote", "separator",
         "attach", "mention", "ref", "separator",
         "undo", "redo", "fullscreen",
     ],
