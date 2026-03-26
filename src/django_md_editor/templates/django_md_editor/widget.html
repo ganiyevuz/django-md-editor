@@ -1,4 +1,4 @@
-<div class="md-editor"
+<div class="md-editor{% if widget.theme == 'dark' %} md-editor--dark{% elif widget.theme == 'light' %} md-editor--light{% endif %}"
      data-preview-url="{{ widget.preview_url }}"
      data-upload-url="{{ widget.upload_url }}"
      style="--md-height: {{ widget.height }};">

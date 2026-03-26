@@ -5,7 +5,8 @@
 /* ---------------------------------------------------------
    CSS Custom Properties — Light theme defaults
    --------------------------------------------------------- */
-:root {
+.md-editor,
+.md-editor--light {
   --md-bg: #ffffff;
   --md-border: #d0d7de;
   --md-text: #1f2328;
@@ -20,16 +21,34 @@
 }
 
 /* ---------------------------------------------------------
-   Dark theme
+   Dark theme — explicit
+   --------------------------------------------------------- */
+.md-editor--dark {
+  --md-bg: #0d1117;
+  --md-border: #30363d;
+  --md-text: #c9d1d9;
+  --md-text-muted: #8b949e;
+  --md-toolbar-bg: #161b22;
+  --md-toolbar-hover: #1c2128;
+  --md-accent: #f78166;
+  --md-textarea-bg: #0d1117;
+  --md-preview-bg: #0d1117;
+  --md-code-bg: #161b22;
+}
+
+/* ---------------------------------------------------------
+   Dark theme — auto (follows OS preference)
+   Only applies when no explicit theme class is set
    --------------------------------------------------------- */
 @media (prefers-color-scheme: dark) {
-  :root {
+  .md-editor:not(.md-editor--light):not(.md-editor--dark) {
     --md-bg: #0d1117;
     --md-border: #30363d;
     --md-text: #c9d1d9;
     --md-text-muted: #8b949e;
     --md-toolbar-bg: #161b22;
     --md-toolbar-hover: #1c2128;
+    --md-accent: #f78166;
     --md-textarea-bg: #0d1117;
     --md-preview-bg: #0d1117;
     --md-code-bg: #161b22;

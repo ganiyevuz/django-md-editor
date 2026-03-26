@@ -65,4 +65,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MD_EDITOR = {
     "REQUIRE_AUTH": False,
+    "THEME": "light",
 }

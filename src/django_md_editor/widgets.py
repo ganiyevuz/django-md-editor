@@ -39,6 +39,7 @@ class MarkdownEditorWidget(Textarea):
             else get_setting("PLACEHOLDER")
         )
         context["widget"]["client_renderer"] = get_setting("CLIENT_RENDERER")
+        context["widget"]["theme"] = get_setting("THEME")
         return context
 
     class Media:
