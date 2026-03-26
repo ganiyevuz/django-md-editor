@@ -28,8 +28,9 @@
   // ---------------------------------------------------------------------------
   function initEditor(container) {
     let toolbarConfig;
+    var configScript = container.querySelector(".md-editor-config");
     try {
-      toolbarConfig = JSON.parse(container.dataset.toolbar || "[]");
+      toolbarConfig = JSON.parse(configScript ? configScript.textContent : "[]");
     } catch (e) {
       toolbarConfig = Object.keys(TOOLBAR_BUTTONS);
     }
@@ -411,16 +412,22 @@
   // 5. renderPreview
   // ---------------------------------------------------------------------------
   function renderPreview(markdown, previewEl, serverUrl) {
+    if (!markdown) {
+      previewEl.innerHTML = "<p style='color:var(--md-text-muted)'>Nothing to preview</p>";
+      return;
+    }
+
     // Client-side render if marked is available
-    // Note: innerHTML is used intentionally here for markdown preview rendering.
-    // Content comes from marked.parse() (client-side library) or a trusted
-    // same-origin server endpoint. For production use, sanitize with DOMPurify.
-    if (typeof marked !== "undefined") {
+    var clientRendered = false;
+    if (typeof marked !== "undefined" && typeof marked.parse === "function") {
       try {
-        previewEl.innerHTML = marked.parse(markdown); // trusted: parsed markdown
+        previewEl.innerHTML = marked.parse(markdown);
+        clientRendered = true;
       } catch (e) {
         previewEl.textContent = markdown;
       }
+    } else {
+      previewEl.textContent = markdown;
     }
 
     // Server-side render if URL provided

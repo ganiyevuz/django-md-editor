@@ -1,8 +1,9 @@
 <div class="md-editor"
-     data-toolbar='{{ widget.toolbar_json }}'
      data-preview-url="{{ widget.preview_url }}"
      data-upload-url="{{ widget.upload_url }}"
      style="--md-height: {{ widget.height }};">
+
+  <script type="application/json" class="md-editor-config">{{ widget.toolbar_json|safe }}</script>
 
   <!-- Tabs -->
   <div class="md-editor-tabs">
