@@ -431,6 +431,7 @@
     }
 
     // Server-side render if URL provided
+    // Only replace client render if server returns actual HTML (contains tags)
     if (serverUrl) {
       fetch(serverUrl, {
         method: "POST",
@@ -445,15 +446,14 @@
           return response.json();
         })
         .then(function (data) {
-          if (data && data.html !== undefined) {
-            previewEl.innerHTML = data.html; // trusted: same-origin server response
-          } else if (data && data.content !== undefined) {
-            previewEl.innerHTML = data.content; // trusted: same-origin server response
+          var html = data && (data.html !== undefined ? data.html : data.content);
+          if (html && (!clientRendered || /<[a-z][\s\S]*>/i.test(html))) {
+            previewEl.innerHTML = html;
           }
         })
         .catch(function () {
           // Keep client-side render on failure; if no client render, show plain text
-          if (typeof marked === "undefined") {
+          if (!clientRendered) {
             previewEl.textContent = markdown;
           }
         });
