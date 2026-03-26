@@ -27,9 +27,15 @@
   // 2. initEditor(container)
   // ---------------------------------------------------------------------------
   function initEditor(container) {
-    const toolbarConfig = container.dataset.toolbar
-      ? container.dataset.toolbar.split(",").map((s) => s.trim())
-      : Object.keys(TOOLBAR_BUTTONS);
+    let toolbarConfig;
+    try {
+      toolbarConfig = JSON.parse(container.dataset.toolbar || "[]");
+    } catch (e) {
+      toolbarConfig = Object.keys(TOOLBAR_BUTTONS);
+    }
+    if (!toolbarConfig.length) {
+      toolbarConfig = Object.keys(TOOLBAR_BUTTONS);
+    }
     const previewUrl = container.dataset.previewUrl || "";
     const uploadUrl = container.dataset.uploadUrl || "";
 
@@ -90,11 +96,15 @@
         this.classList.add("md-editor-tab--active");
 
         if (targetTab === "preview") {
-          writePanels.forEach((p) => p.classList.add("md-editor-panel--hidden"));
+          writePanels.forEach((p) => {
+            p.classList.add("md-editor-panel--hidden");
+            p.classList.remove("md-editor-panel--active");
+          });
           previewPanels.forEach((p) => {
             p.classList.remove("md-editor-panel--hidden");
             p.classList.add("md-editor-panel--active");
           });
+          toolbar.style.display = "none";
 
           const previewContent = container.querySelector(".md-editor-preview-content");
           if (previewContent) {
@@ -105,7 +115,11 @@
             p.classList.add("md-editor-panel--hidden");
             p.classList.remove("md-editor-panel--active");
           });
-          writePanels.forEach((p) => p.classList.remove("md-editor-panel--hidden"));
+          writePanels.forEach((p) => {
+            p.classList.remove("md-editor-panel--hidden");
+            p.classList.add("md-editor-panel--active");
+          });
+          toolbar.style.display = "";
         }
       });
     });
