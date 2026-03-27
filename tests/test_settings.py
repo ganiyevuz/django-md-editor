@@ -1,16 +1,16 @@
 from django.test import TestCase, override_settings
 
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 
 class GetSettingTests(TestCase):
     def test_returns_default_renderer_class(self):
         result = get_setting("RENDERER_CLASS")
-        assert result == "django_md_editor.renderers.DefaultRenderer"
+        assert result == "django_markdown_widget.renderers.DefaultRenderer"
 
     def test_returns_default_upload_handler_class(self):
         result = get_setting("UPLOAD_HANDLER_CLASS")
-        assert result == "django_md_editor.uploads.DefaultUploadHandler"
+        assert result == "django_markdown_widget.uploads.DefaultUploadHandler"
 
     def test_returns_default_toolbar(self):
         result = get_setting("TOOLBAR")
@@ -33,7 +33,7 @@ class GetSettingTests(TestCase):
 
     def test_returns_default_client_renderer(self):
         result = get_setting("CLIENT_RENDERER")
-        assert result == "django_md_editor/js/marked.min.js"
+        assert result == "django_markdown_widget/js/marked.min.js"
 
     def test_returns_default_height(self):
         result = get_setting("DEFAULT_HEIGHT")
@@ -55,7 +55,7 @@ class GetSettingTests(TestCase):
     @override_settings(MD_EDITOR={"MAX_UPLOAD_SIZE": 5 * 1024 * 1024})
     def test_non_overridden_settings_keep_defaults(self):
         result = get_setting("RENDERER_CLASS")
-        assert result == "django_md_editor.renderers.DefaultRenderer"
+        assert result == "django_markdown_widget.renderers.DefaultRenderer"
 
     def test_unknown_key_raises_key_error(self):
         with self.assertRaises(KeyError):

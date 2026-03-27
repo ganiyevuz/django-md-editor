@@ -4,13 +4,13 @@ All settings are optional. Configure them under the `MD_EDITOR` dictionary in yo
 
 ```python
 MD_EDITOR = {
-    "RENDERER_CLASS": "django_md_editor.renderers.DefaultRenderer",
-    "UPLOAD_HANDLER_CLASS": "django_md_editor.uploads.DefaultUploadHandler",
+    "RENDERER_CLASS": "django_markdown_widget.renderers.DefaultRenderer",
+    "UPLOAD_HANDLER_CLASS": "django_markdown_widget.uploads.DefaultUploadHandler",
     "TOOLBAR": ["heading", "bold", "italic", ...],
     "ALLOWED_UPLOAD_TYPES": ["image/png", "image/jpeg", "image/gif", "image/webp"],
     "MAX_UPLOAD_SIZE": 10 * 1024 * 1024,
     "UPLOAD_PATH": "md-editor/uploads/%Y/%m/",
-    "CLIENT_RENDERER": "django_md_editor/js/marked.min.js",
+    "CLIENT_RENDERER": "django_markdown_widget/js/marked.min.js",
     "DEFAULT_HEIGHT": "300px",
     "PLACEHOLDER": "Add your comment here...",
     "THEME": "auto",
@@ -23,13 +23,13 @@ MD_EDITOR = {
 
 ### `RENDERER_CLASS`
 
-: **Default:** `"django_md_editor.renderers.DefaultRenderer"`
+: **Default:** `"django_markdown_widget.renderers.DefaultRenderer"`
 
   Dotted Python path to the server-side markdown renderer class. Must extend `BaseRenderer`.
 
 ### `UPLOAD_HANDLER_CLASS`
 
-: **Default:** `"django_md_editor.uploads.DefaultUploadHandler"`
+: **Default:** `"django_markdown_widget.uploads.DefaultUploadHandler"`
 
   Dotted Python path to the upload handler class. Must extend `BaseUploadHandler`.
 
@@ -59,7 +59,7 @@ MD_EDITOR = {
 
 ### `CLIENT_RENDERER`
 
-: **Default:** `"django_md_editor/js/marked.min.js"`
+: **Default:** `"django_markdown_widget/js/marked.min.js"`
 
   Path to the client-side markdown renderer JavaScript file (served as a static file).
 

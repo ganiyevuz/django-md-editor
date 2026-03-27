@@ -7,9 +7,9 @@ from django.test import TestCase
 
 class CleanupMarkdownMediaTests(TestCase):
     @patch(
-        "django_md_editor.management.commands.cleanup_markdown_media.default_storage"
+        "django_markdown_widget.management.commands.cleanup_markdown_media.default_storage"
     )
-    @patch("django_md_editor.management.commands.cleanup_markdown_media.apps")
+    @patch("django_markdown_widget.management.commands.cleanup_markdown_media.apps")
     def test_dry_run_lists_without_deleting(self, mock_apps, mock_storage):
         mock_apps.get_models.return_value = []
         mock_storage.listdir.return_value = ([], ["orphan.png"])
@@ -23,9 +23,9 @@ class CleanupMarkdownMediaTests(TestCase):
         mock_storage.delete.assert_not_called()
 
     @patch(
-        "django_md_editor.management.commands.cleanup_markdown_media.default_storage"
+        "django_markdown_widget.management.commands.cleanup_markdown_media.default_storage"
     )
-    @patch("django_md_editor.management.commands.cleanup_markdown_media.apps")
+    @patch("django_markdown_widget.management.commands.cleanup_markdown_media.apps")
     def test_deletes_orphaned_files(self, mock_apps, mock_storage):
         mock_apps.get_models.return_value = []
         mock_storage.listdir.return_value = ([], ["orphan.png"])
@@ -38,9 +38,9 @@ class CleanupMarkdownMediaTests(TestCase):
         mock_storage.delete.assert_called_once()
 
     @patch(
-        "django_md_editor.management.commands.cleanup_markdown_media.default_storage"
+        "django_markdown_widget.management.commands.cleanup_markdown_media.default_storage"
     )
-    @patch("django_md_editor.management.commands.cleanup_markdown_media.apps")
+    @patch("django_markdown_widget.management.commands.cleanup_markdown_media.apps")
     def test_no_orphans_found(self, mock_apps, mock_storage):
         mock_apps.get_models.return_value = []
         mock_storage.listdir.return_value = ([], [])
@@ -51,9 +51,9 @@ class CleanupMarkdownMediaTests(TestCase):
         assert "No orphaned files" in out.getvalue()
 
     @patch(
-        "django_md_editor.management.commands.cleanup_markdown_media.default_storage"
+        "django_markdown_widget.management.commands.cleanup_markdown_media.default_storage"
     )
-    @patch("django_md_editor.management.commands.cleanup_markdown_media.apps")
+    @patch("django_markdown_widget.management.commands.cleanup_markdown_media.apps")
     def test_handles_missing_upload_directory(self, mock_apps, mock_storage):
         mock_apps.get_models.return_value = []
         mock_storage.listdir.side_effect = FileNotFoundError
@@ -64,9 +64,9 @@ class CleanupMarkdownMediaTests(TestCase):
         assert "No upload directory" in out.getvalue()
 
     @patch(
-        "django_md_editor.management.commands.cleanup_markdown_media.default_storage"
+        "django_markdown_widget.management.commands.cleanup_markdown_media.default_storage"
     )
-    @patch("django_md_editor.management.commands.cleanup_markdown_media.apps")
+    @patch("django_markdown_widget.management.commands.cleanup_markdown_media.apps")
     def test_keeps_referenced_files(self, mock_apps, mock_storage):
         # Set up a model with a TextField referencing a file
         mock_model = MagicMock()

@@ -1,23 +1,23 @@
 from django.test import TestCase
 
-from django_md_editor.widgets import MarkdownEditorWidget
+from django_markdown_widget.widgets import MarkdownEditorWidget
 
 
 class MarkdownEditorWidgetTests(TestCase):
     def test_default_attrs(self):
         widget = MarkdownEditorWidget()
-        assert widget.template_name == "django_md_editor/widget.html"
+        assert widget.template_name == "django_markdown_widget/widget.html"
 
     def test_media_includes_css(self):
         widget = MarkdownEditorWidget()
         css = str(widget.media)
-        assert "django_md_editor/css/editor.css" in css
+        assert "django_markdown_widget/css/editor.css" in css
 
     def test_media_includes_js(self):
         widget = MarkdownEditorWidget()
         js = str(widget.media)
-        assert "django_md_editor/js/editor.js" in js
-        assert "django_md_editor/js/marked.min.js" in js
+        assert "django_markdown_widget/js/editor.js" in js
+        assert "django_markdown_widget/js/marked.min.js" in js
 
     def test_custom_toolbar(self):
         toolbar = ["bold", "italic"]

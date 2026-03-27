@@ -53,7 +53,7 @@ Visit `http://localhost:8000/admin/` to see the editor in the Django admin.
 
 ```
 django-md-editor/
-├── src/django_md_editor/          # Package source
+├── src/django_markdown_widget/          # Package source
 │   ├── static/                    # CSS and JavaScript
 │   ├── templates/                 # Widget HTML template
 │   ├── templatetags/              # Template tag and filter

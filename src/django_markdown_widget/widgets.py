@@ -4,11 +4,11 @@ import json
 
 from django.forms.widgets import Textarea
 
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 
 class MarkdownEditorWidget(Textarea):
-    template_name = "django_md_editor/widget.html"
+    template_name = "django_markdown_widget/widget.html"
 
     def __init__(
         self,
@@ -45,8 +45,8 @@ class MarkdownEditorWidget(Textarea):
         return context
 
     class Media:
-        css = {"all": ("django_md_editor/css/editor.css",)}
+        css = {"all": ("django_markdown_widget/css/editor.css",)}
         js = (
-            "django_md_editor/js/marked.min.js",
-            "django_md_editor/js/editor.js",
+            "django_markdown_widget/js/marked.min.js",
+            "django_markdown_widget/js/editor.js",
         )

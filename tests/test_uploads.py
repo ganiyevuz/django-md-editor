@@ -4,7 +4,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 
-from django_md_editor.uploads import BaseUploadHandler, DefaultUploadHandler
+from django_markdown_widget.uploads import BaseUploadHandler, DefaultUploadHandler
 
 
 class BaseUploadHandlerTests(TestCase):
@@ -37,7 +37,7 @@ class DefaultUploadHandlerTests(TestCase):
             handler.validate(file)
         assert "File size" in str(ctx.exception)
 
-    @patch("django_md_editor.uploads.default_storage")
+    @patch("django_markdown_widget.uploads.default_storage")
     def test_save_stores_file_and_returns_url(self, mock_storage):
         mock_storage.save.return_value = "md-editor/uploads/2026/03/test.png"
         mock_storage.url.return_value = "/media/md-editor/uploads/2026/03/test.png"

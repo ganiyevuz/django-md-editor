@@ -6,7 +6,7 @@
 
 ```python
 from django.forms import ModelForm
-from django_md_editor import MarkdownEditorWidget
+from django_markdown_widget import MarkdownEditorWidget
 
 class PostForm(ModelForm):
     class Meta:
@@ -75,8 +75,8 @@ The editor supports these keyboard shortcuts:
 
 The widget automatically includes its CSS and JavaScript via Django's `Media` framework:
 
-- `django_md_editor/css/editor.css`
-- `django_md_editor/js/marked.min.js`
-- `django_md_editor/js/editor.js`
+- `django_markdown_widget/css/editor.css`
+- `django_markdown_widget/js/marked.min.js`
+- `django_markdown_widget/js/editor.js`
 
 These are served from Django's static files. Make sure `django.contrib.staticfiles` is in your `INSTALLED_APPS` or that you collect static files for production.

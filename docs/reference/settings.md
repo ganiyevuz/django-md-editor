@@ -9,7 +9,7 @@ MD_EDITOR = { ... }
 Accessing a setting programmatically:
 
 ```python
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 value = get_setting("MAX_UPLOAD_SIZE")  # returns 10485760 if not overridden
 ```
@@ -18,8 +18,8 @@ value = get_setting("MAX_UPLOAD_SIZE")  # returns 10485760 if not overridden
 
 ```python
 {
-    "RENDERER_CLASS": "django_md_editor.renderers.DefaultRenderer",
-    "UPLOAD_HANDLER_CLASS": "django_md_editor.uploads.DefaultUploadHandler",
+    "RENDERER_CLASS": "django_markdown_widget.renderers.DefaultRenderer",
+    "UPLOAD_HANDLER_CLASS": "django_markdown_widget.uploads.DefaultUploadHandler",
     "TOOLBAR": [
         "heading", "bold", "italic", "strikethrough", "separator",
         "quote", "code", "code-block", "link", "image", "separator",
@@ -37,7 +37,7 @@ value = get_setting("MAX_UPLOAD_SIZE")  # returns 10485760 if not overridden
     ],
     "MAX_UPLOAD_SIZE": 10485760,
     "UPLOAD_PATH": "md-editor/uploads/%Y/%m/",
-    "CLIENT_RENDERER": "django_md_editor/js/marked.min.js",
+    "CLIENT_RENDERER": "django_markdown_widget/js/marked.min.js",
     "DEFAULT_HEIGHT": "300px",
     "PLACEHOLDER": "Add your comment here...",
     "THEME": "auto",

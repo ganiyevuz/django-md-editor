@@ -8,7 +8,7 @@ Add the mixin to your `ModelAdmin` to replace **all** TextFields with the markdo
 
 ```python
 from django.contrib import admin
-from django_md_editor import MarkdownEditorAdminMixin
+from django_markdown_widget import MarkdownEditorAdminMixin
 
 @admin.register(Post)
 class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):

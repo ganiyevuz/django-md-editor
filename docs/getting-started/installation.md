@@ -16,7 +16,7 @@ pip install django-markdown-widget
 ```python
 INSTALLED_APPS = [
     ...
-    "django_md_editor",
+    "django_markdown_widget",
 ]
 ```
 
@@ -30,7 +30,7 @@ from django.urls import include, path
 
 urlpatterns = [
     ...
-    path("md-editor/", include("django_md_editor.urls")),
+    path("md-editor/", include("django_markdown_widget.urls")),
 ]
 ```
 

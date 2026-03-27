@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from django_md_editor.renderers import BaseRenderer, DefaultRenderer
+from django_markdown_widget.renderers import BaseRenderer, DefaultRenderer
 
 
 class BaseRendererTests(TestCase):

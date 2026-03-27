@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from django_md_editor.admin import MarkdownEditorAdminMixin
+from django_markdown_widget.admin import MarkdownEditorAdminMixin
 from posts.models import Post
 
 

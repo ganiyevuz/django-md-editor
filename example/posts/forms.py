@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from django_md_editor.widgets import MarkdownEditorWidget
+from django_markdown_widget.widgets import MarkdownEditorWidget
 from posts.models import Post
 
 

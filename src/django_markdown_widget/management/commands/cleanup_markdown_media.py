@@ -5,8 +5,8 @@ from django.core.files.storage import default_storage
 from django.core.management.base import BaseCommand
 from django.db.models import TextField
 
-from django_md_editor.cleanup import _url_to_storage_path, extract_media_urls
-from django_md_editor.settings import get_setting
+from django_markdown_widget.cleanup import _url_to_storage_path, extract_media_urls
+from django_markdown_widget.settings import get_setting
 
 
 class Command(BaseCommand):

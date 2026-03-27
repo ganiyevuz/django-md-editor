@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from django.db.models import TextField
 
-from django_md_editor.widgets import MarkdownEditorWidget
+from django_markdown_widget.widgets import MarkdownEditorWidget
 
 
 class MarkdownEditorAdminMixin:

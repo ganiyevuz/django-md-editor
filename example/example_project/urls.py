@@ -5,6 +5,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("md-editor/", include("django_md_editor.urls")),
+    path("md-editor/", include("django_markdown_widget.urls")),
     path("", include("posts.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

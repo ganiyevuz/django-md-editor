@@ -1,4 +1,4 @@
-# django-md-editor
+# django-markdown-widget
 
 A GitHub-style markdown editor widget for Django forms and admin.
 
@@ -36,7 +36,7 @@ Add to your `INSTALLED_APPS` and include the URLs:
 # settings.py
 INSTALLED_APPS = [
     ...
-    "django_md_editor",
+    "django_markdown_widget",
 ]
 
 # urls.py
@@ -44,7 +44,7 @@ from django.urls import include, path
 
 urlpatterns = [
     ...
-    path("md-editor/", include("django_md_editor.urls")),
+    path("md-editor/", include("django_markdown_widget.urls")),
 ]
 ```
 
@@ -60,7 +60,7 @@ pip install markdown
 
 ```python
 from django.forms import ModelForm
-from django_md_editor import MarkdownEditorWidget
+from django_markdown_widget import MarkdownEditorWidget
 
 class PostForm(ModelForm):
     class Meta:
@@ -75,7 +75,7 @@ class PostForm(ModelForm):
 
 ```python
 from django.contrib import admin
-from django_md_editor import MarkdownEditorAdminMixin
+from django_markdown_widget import MarkdownEditorAdminMixin
 
 @admin.register(Post)
 class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):
@@ -86,7 +86,7 @@ class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):
 ### Template Rendering
 
 ```django
-{% load md_editor %}
+{% load markdown_widget %}
 
 {# As a filter (recommended) #}
 {{ post.content|markdown }}
@@ -98,7 +98,7 @@ class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):
 ### Media Cleanup
 
 ```python
-from django_md_editor import MarkdownCleanupMixin
+from django_markdown_widget import MarkdownCleanupMixin
 
 class Post(MarkdownCleanupMixin, models.Model):
     content = models.TextField()
@@ -127,8 +127,8 @@ All settings are optional and go under `MD_EDITOR` in your Django settings:
 ```python
 MD_EDITOR = {
     # Pluggable backend classes
-    "RENDERER_CLASS": "django_md_editor.renderers.DefaultRenderer",
-    "UPLOAD_HANDLER_CLASS": "django_md_editor.uploads.DefaultUploadHandler",
+    "RENDERER_CLASS": "django_markdown_widget.renderers.DefaultRenderer",
+    "UPLOAD_HANDLER_CLASS": "django_markdown_widget.uploads.DefaultUploadHandler",
 
     # Toolbar buttons
     "TOOLBAR": [
@@ -162,7 +162,7 @@ MD_EDITOR = {
 ## Custom Renderer
 
 ```python
-from django_md_editor import BaseRenderer
+from django_markdown_widget import BaseRenderer
 
 class MyRenderer(BaseRenderer):
     def render(self, markdown_text: str) -> str:
@@ -180,7 +180,7 @@ MD_EDITOR = {
 ## Custom Upload Handler
 
 ```python
-from django_md_editor import BaseUploadHandler
+from django_markdown_widget import BaseUploadHandler
 
 class S3UploadHandler(BaseUploadHandler):
     def validate(self, file):

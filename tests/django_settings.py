@@ -5,7 +5,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.admin",
     "django.contrib.messages",
-    "django_md_editor",
+    "django_markdown_widget",
 ]
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 DATABASES = {

@@ -2,7 +2,7 @@ from unittest.mock import patch
 
 from django.test import TestCase
 
-from django_md_editor.cleanup import (
+from django_markdown_widget.cleanup import (
     _url_to_storage_path,
     delete_orphaned_media,
     extract_media_urls,
@@ -54,7 +54,7 @@ class UrlToStoragePathTests(TestCase):
 
 
 class DeleteOrphanedMediaTests(TestCase):
-    @patch("django_md_editor.cleanup.default_storage")
+    @patch("django_markdown_widget.cleanup.default_storage")
     def test_deletes_removed_image(self, mock_storage):
         mock_storage.exists.return_value = True
 
@@ -66,7 +66,7 @@ class DeleteOrphanedMediaTests(TestCase):
         assert len(deleted) == 1
         mock_storage.delete.assert_called_once()
 
-    @patch("django_md_editor.cleanup.default_storage")
+    @patch("django_markdown_widget.cleanup.default_storage")
     def test_keeps_image_still_referenced(self, mock_storage):
         img = "![img](/media/md-editor/uploads/2026/03/1234_keep.png)"
         old = f"Before {img}"
@@ -77,7 +77,7 @@ class DeleteOrphanedMediaTests(TestCase):
         assert deleted == []
         mock_storage.delete.assert_not_called()
 
-    @patch("django_md_editor.cleanup.default_storage")
+    @patch("django_markdown_widget.cleanup.default_storage")
     def test_skips_nonexistent_file(self, mock_storage):
         mock_storage.exists.return_value = False
 
@@ -89,7 +89,7 @@ class DeleteOrphanedMediaTests(TestCase):
         assert deleted == []
         mock_storage.delete.assert_not_called()
 
-    @patch("django_md_editor.cleanup.default_storage")
+    @patch("django_markdown_widget.cleanup.default_storage")
     def test_handles_multiple_removals(self, mock_storage):
         mock_storage.exists.return_value = True
 

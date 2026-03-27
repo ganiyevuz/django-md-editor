@@ -3,7 +3,7 @@ from unittest.mock import patch
 from django.db.models import Model, TextField
 from django.test import TestCase, override_settings
 
-from django_md_editor.mixins import MarkdownCleanupMixin
+from django_markdown_widget.mixins import MarkdownCleanupMixin
 
 
 # Define the test model once at module level to avoid re-registration warnings
@@ -57,7 +57,7 @@ class MarkdownCleanupMixinTests(TestCase):
         assert "summary" not in instance._md_original_values
 
     @override_settings(MD_EDITOR={"CLEANUP_MEDIA": True})
-    @patch("django_md_editor.mixins.delete_orphaned_media")
+    @patch("django_markdown_widget.mixins.delete_orphaned_media")
     def test_save_calls_cleanup_on_change(self, mock_cleanup):
         instance = _make_instance(
             CleanupPost,
@@ -75,7 +75,7 @@ class MarkdownCleanupMixinTests(TestCase):
         )
 
     @override_settings(MD_EDITOR={"CLEANUP_MEDIA": True})
-    @patch("django_md_editor.mixins.delete_orphaned_media")
+    @patch("django_markdown_widget.mixins.delete_orphaned_media")
     def test_save_skips_cleanup_for_new_objects(self, mock_cleanup):
         instance = _make_instance(
             CleanupPost,
@@ -89,7 +89,7 @@ class MarkdownCleanupMixinTests(TestCase):
         mock_cleanup.assert_not_called()
 
     @override_settings(MD_EDITOR={"CLEANUP_MEDIA": False})
-    @patch("django_md_editor.mixins.delete_orphaned_media")
+    @patch("django_markdown_widget.mixins.delete_orphaned_media")
     def test_save_skips_cleanup_when_disabled(self, mock_cleanup):
         instance = _make_instance(
             CleanupPost,
@@ -104,7 +104,7 @@ class MarkdownCleanupMixinTests(TestCase):
         mock_cleanup.assert_not_called()
 
     @override_settings(MD_EDITOR={"CLEANUP_MEDIA": True})
-    @patch("django_md_editor.mixins.delete_orphaned_media")
+    @patch("django_markdown_widget.mixins.delete_orphaned_media")
     def test_save_skips_cleanup_when_unchanged(self, mock_cleanup):
         instance = _make_instance(
             CleanupPost,
@@ -118,7 +118,7 @@ class MarkdownCleanupMixinTests(TestCase):
         mock_cleanup.assert_not_called()
 
     @override_settings(MD_EDITOR={"CLEANUP_MEDIA": True})
-    @patch("django_md_editor.mixins.delete_orphaned_media")
+    @patch("django_markdown_widget.mixins.delete_orphaned_media")
     def test_save_updates_originals_after_save(self, mock_cleanup):
         instance = _make_instance(
             CleanupPost,

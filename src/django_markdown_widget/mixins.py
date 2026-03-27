@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from django.db.models import Model, TextField
 
-from django_md_editor.cleanup import delete_orphaned_media
-from django_md_editor.settings import get_setting
+from django_markdown_widget.cleanup import delete_orphaned_media
+from django_markdown_widget.settings import get_setting
 
 
 class MarkdownCleanupMixin(Model):

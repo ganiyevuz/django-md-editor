@@ -5,7 +5,7 @@ from urllib.parse import urlparse
 
 from django.core.files.storage import default_storage
 
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 # Matches markdown images ![alt](url) and links to uploaded files
 _MEDIA_RE = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")

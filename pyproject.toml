@@ -43,7 +43,7 @@ docs = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/django_md_editor"]
+packages = ["src/django_markdown_widget"]
 
 [tool.ruff]
 target-version = "py311"
@@ -64,7 +64,7 @@ select = [
 "**/migrations/*.py" = ["E501"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["django_md_editor"]
+known-first-party = ["django_markdown_widget"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -9,7 +9,7 @@ from django.http import HttpRequest, JsonResponse
 from django.utils.module_loading import import_string
 from django.views import View
 
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 
 @cache

@@ -1,8 +1,8 @@
 from django.urls import path
 
-from django_md_editor.views import PreviewView, UploadView
+from django_markdown_widget.views import PreviewView, UploadView
 
-app_name = "django_md_editor"
+app_name = "django_markdown_widget"
 
 urlpatterns = [
     path("preview", PreviewView.as_view(), name="preview"),

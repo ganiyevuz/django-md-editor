@@ -1,8 +1,8 @@
-# django-md-editor
+# django-markdown-widget
 
 A GitHub-style markdown editor widget for Django forms and admin.
 
-## Why django-md-editor?
+## Why django-markdown-widget?
 
 - **Drop-in widget** -- works with any Django form or ModelForm
 - **One-line admin integration** -- mixin replaces TextFields with the editor
@@ -14,7 +14,7 @@ A GitHub-style markdown editor widget for Django forms and admin.
 
 ```python
 from django.forms import ModelForm
-from django_md_editor import MarkdownEditorWidget
+from django_markdown_widget import MarkdownEditorWidget
 
 class PostForm(ModelForm):
     class Meta:

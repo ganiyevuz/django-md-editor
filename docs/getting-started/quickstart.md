@@ -8,7 +8,7 @@ Replace Django's default `Textarea` with `MarkdownEditorWidget`:
 
 ```python
 from django.forms import ModelForm
-from django_md_editor import MarkdownEditorWidget
+from django_markdown_widget import MarkdownEditorWidget
 
 class PostForm(ModelForm):
     class Meta:
@@ -37,7 +37,7 @@ Use `MarkdownEditorAdminMixin` to replace TextFields in the admin:
 
 ```python
 from django.contrib import admin
-from django_md_editor import MarkdownEditorAdminMixin
+from django_markdown_widget import MarkdownEditorAdminMixin
 
 @admin.register(Post)
 class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):
@@ -56,7 +56,7 @@ class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):
 Load the template tag library and render markdown content:
 
 ```django
-{% load md_editor %}
+{% load markdown_widget %}
 
 {# As a filter (recommended) #}
 {{ post.content|markdown }}

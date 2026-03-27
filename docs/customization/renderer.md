@@ -11,7 +11,7 @@ The renderer converts markdown text to HTML on the server side. It's used by the
 Subclass `BaseRenderer` and implement the `render` method:
 
 ```python
-from django_md_editor import BaseRenderer
+from django_markdown_widget import BaseRenderer
 
 class MarkdownItRenderer(BaseRenderer):
     def render(self, markdown_text: str) -> str:
@@ -28,7 +28,7 @@ For user-generated content, sanitize the output:
 
 ```python
 import nh3
-from django_md_editor import BaseRenderer
+from django_markdown_widget import BaseRenderer
 
 class SafeRenderer(BaseRenderer):
     def render(self, markdown_text: str) -> str:

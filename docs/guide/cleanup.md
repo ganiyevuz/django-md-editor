@@ -8,7 +8,7 @@ When users upload images to the editor and later remove them from the content, t
 
 ```python
 from django.db import models
-from django_md_editor import MarkdownCleanupMixin
+from django_markdown_widget import MarkdownCleanupMixin
 
 class Post(MarkdownCleanupMixin, models.Model):
     content = models.TextField()

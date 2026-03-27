@@ -296,7 +296,7 @@ wheels = [
 ]
 
 [[package]]
-name = "django-md-editor"
+name = "django-markdown-widget"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [

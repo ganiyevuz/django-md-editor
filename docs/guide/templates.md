@@ -7,7 +7,7 @@ Render stored markdown content as HTML in your templates.
 Load the `md_editor` template tag library:
 
 ```django
-{% load md_editor %}
+{% load markdown_widget %}
 ```
 
 ## Filter (Recommended)

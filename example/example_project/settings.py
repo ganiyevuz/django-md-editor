@@ -3,7 +3,7 @@ import sys
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Allow importing django_md_editor from local src/ directory
+# Allow importing django_markdown_widget from local src/ directory
 sys.path.insert(0, os.path.join(BASE_DIR, "..", "src"))
 
 SECRET_KEY = "example-secret-key-not-for-production"
@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_md_editor",
+    "django_markdown_widget",
     "posts",
 ]
 

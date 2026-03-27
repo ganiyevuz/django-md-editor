@@ -4,8 +4,8 @@ from django.contrib import admin
 from django.db.models import CharField, Model, TextField
 from django.test import TestCase
 
-from django_md_editor.admin import MarkdownEditorAdminMixin
-from django_md_editor.widgets import MarkdownEditorWidget
+from django_markdown_widget.admin import MarkdownEditorAdminMixin
+from django_markdown_widget.widgets import MarkdownEditorWidget
 
 
 class FakeModel(Model):

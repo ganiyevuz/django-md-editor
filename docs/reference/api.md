@@ -7,7 +7,7 @@
 :   Django form widget. Extends `django.forms.widgets.Textarea`.
 
     ```python
-    from django_md_editor import MarkdownEditorWidget
+    from django_markdown_widget import MarkdownEditorWidget
     ```
 
     **Parameters:** `toolbar`, `preview_url`, `upload_url`, `height`, `placeholder`, `attrs`
@@ -17,7 +17,7 @@
 :   ModelAdmin mixin. Add before `admin.ModelAdmin` in the MRO.
 
     ```python
-    from django_md_editor import MarkdownEditorAdminMixin
+    from django_markdown_widget import MarkdownEditorAdminMixin
     ```
 
     **Attributes:**
@@ -29,7 +29,7 @@
 :   Abstract model mixin. Deletes orphaned media on `save()`.
 
     ```python
-    from django_md_editor import MarkdownCleanupMixin
+    from django_markdown_widget import MarkdownCleanupMixin
     ```
 
     **Attributes:**
@@ -41,7 +41,7 @@
 :   Abstract base class for server-side markdown renderers.
 
     ```python
-    from django_md_editor import BaseRenderer
+    from django_markdown_widget import BaseRenderer
     ```
 
     **Abstract methods:**
@@ -53,7 +53,7 @@
 :   Default renderer using python-markdown. Falls back to HTML-escaped text.
 
     ```python
-    from django_md_editor import DefaultRenderer
+    from django_markdown_widget import DefaultRenderer
     ```
 
 ### `BaseUploadHandler`
@@ -61,7 +61,7 @@
 :   Abstract base class for file upload handlers.
 
     ```python
-    from django_md_editor import BaseUploadHandler
+    from django_markdown_widget import BaseUploadHandler
     ```
 
     **Methods:**
@@ -74,7 +74,7 @@
 :   Default handler using Django's `default_storage`.
 
     ```python
-    from django_md_editor import DefaultUploadHandler
+    from django_markdown_widget import DefaultUploadHandler
     ```
 
 ## Utility Functions
@@ -84,7 +84,7 @@
 :   Extract all `![alt](url)` image URLs from markdown text.
 
     ```python
-    from django_md_editor import extract_media_urls
+    from django_markdown_widget import extract_media_urls
 
     urls = extract_media_urls("Hello ![img](/media/uploads/photo.png)")
     # {"/media/uploads/photo.png"}
@@ -95,7 +95,7 @@
 :   Compare old and new markdown, delete files removed from content. Returns list of deleted storage paths.
 
     ```python
-    from django_md_editor import delete_orphaned_media
+    from django_markdown_widget import delete_orphaned_media
 
     deleted = delete_orphaned_media(old_content, new_content)
     ```
@@ -105,7 +105,7 @@
 :   Retrieve a setting value with fallback to defaults.
 
     ```python
-    from django_md_editor.settings import get_setting
+    from django_markdown_widget.settings import get_setting
 
     max_size = get_setting("MAX_UPLOAD_SIZE")
     ```
@@ -114,7 +114,7 @@
 
 ## URL Endpoints
 
-Both endpoints are registered under the `django_md_editor` app namespace.
+Both endpoints are registered under the `django_markdown_widget` app namespace.
 
 ### `POST /md-editor/preview`
 
@@ -138,7 +138,7 @@ Both endpoints are registered under the `django_md_editor` app namespace.
 
 ## Template Tags & Filters
 
-Load with `{% load md_editor %}`.
+Load with `{% load markdown_widget %}`.
 
 ### `{% markdown text %}`
 

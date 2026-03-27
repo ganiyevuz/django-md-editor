@@ -12,7 +12,7 @@ Subclass `BaseUploadHandler` and implement `save`. Optionally override `validate
 
 ```python
 import uuid
-from django_md_editor import BaseUploadHandler
+from django_markdown_widget import BaseUploadHandler
 
 class S3UploadHandler(BaseUploadHandler):
     def validate(self, file):

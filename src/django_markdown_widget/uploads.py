@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage
 from django.core.files.uploadedfile import UploadedFile
 
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 
 class BaseUploadHandler(ABC):

@@ -4,7 +4,7 @@ from django import template
 from django.utils.module_loading import import_string
 from django.utils.safestring import mark_safe
 
-from django_md_editor.settings import get_setting
+from django_markdown_widget.settings import get_setting
 
 register = template.Library()
 
