@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-markdown-widget"
-version = "1.0.0"
+version = "1.0.1"
 description = "A GitHub-style markdown editor widget for Django forms"
 readme = "README.md"
 requires-python = ">=3.11"
