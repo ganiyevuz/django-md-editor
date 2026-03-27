@@ -1,31 +1,54 @@
-import json
+from __future__ import annotations
 
-from django.http import JsonResponse
+import json
+from functools import cache
+from typing import Any
+
+from django.core.exceptions import ValidationError
+from django.http import HttpRequest, JsonResponse
 from django.utils.module_loading import import_string
 from django.views import View
 
 from django_md_editor.settings import get_setting
 
 
-def load_renderer():
-    renderer_class = import_string(get_setting("RENDERER_CLASS"))
-    return renderer_class()
+@cache
+def _get_renderer_class() -> type:
+    return import_string(get_setting("RENDERER_CLASS"))
 
 
-def load_upload_handler():
-    handler_class = import_string(get_setting("UPLOAD_HANDLER_CLASS"))
-    return handler_class()
+@cache
+def _get_upload_handler_class() -> type:
+    return import_string(get_setting("UPLOAD_HANDLER_CLASS"))
 
 
-class PreviewView(View):
-    http_method_names = ["post"]
+def load_renderer() -> Any:
+    """Instantiate the configured markdown renderer."""
+    return _get_renderer_class()()
 
-    def dispatch(self, request, *args, **kwargs):
+
+def load_upload_handler() -> Any:
+    """Instantiate the configured upload handler."""
+    return _get_upload_handler_class()()
+
+
+class AuthRequiredMixin:
+    """Mixin that returns 401 when REQUIRE_AUTH is True and user is not authenticated."""
+
+    def dispatch(
+        self, request: HttpRequest, *args: Any, **kwargs: Any
+    ) -> JsonResponse:
         if get_setting("REQUIRE_AUTH") and not request.user.is_authenticated:
-            return JsonResponse({"error": "Authentication required"}, status=403)
+            return JsonResponse({"error": "Authentication required"}, status=401)
         return super().dispatch(request, *args, **kwargs)
 
-    def post(self, request):
+
+class PreviewView(AuthRequiredMixin, View):
+    """Renders markdown text to HTML via the configured renderer."""
+
+    http_method_names = ["post"]
+
+    def post(self, request: HttpRequest) -> JsonResponse:
         try:
             body = json.loads(request.body)
             text = body.get("text", "")
@@ -37,15 +60,12 @@ class PreviewView(View):
         return JsonResponse({"html": html})
 
 
-class UploadView(View):
+class UploadView(AuthRequiredMixin, View):
+    """Handles file uploads via the configured upload handler."""
+
     http_method_names = ["post"]
 
-    def dispatch(self, request, *args, **kwargs):
-        if get_setting("REQUIRE_AUTH") and not request.user.is_authenticated:
-            return JsonResponse({"error": "Authentication required"}, status=403)
-        return super().dispatch(request, *args, **kwargs)
-
-    def post(self, request):
+    def post(self, request: HttpRequest) -> JsonResponse:
         file = request.FILES.get("file")
         if not file:
             return JsonResponse({"error": "No file provided"}, status=400)
@@ -53,8 +73,9 @@ class UploadView(View):
         handler = load_upload_handler()
         try:
             handler.validate(file)
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
+        except ValidationError as e:
+            messages = e.messages if hasattr(e, "messages") else [str(e)]
+            return JsonResponse({"error": " ".join(messages)}, status=400)
 
         url = handler.save(file)
         return JsonResponse({"url": url, "name": file.name})
