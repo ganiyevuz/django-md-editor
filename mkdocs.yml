@@ -1,4 +1,4 @@
-site_name: django-md-editor
+site_name: django-markdown-widget
 site_description: A GitHub-style markdown editor widget for Django forms and admin
 site_url: https://ganiyevuz.github.io/django-md-editor/
 repo_url: https://github.com/ganiyevuz/django-md-editor

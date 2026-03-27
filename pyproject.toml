@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "django-md-editor"
+name = "django-markdown-widget"
 version = "1.0.0"
 description = "A GitHub-style markdown editor widget for Django forms"
 readme = "README.md"

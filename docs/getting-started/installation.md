@@ -8,7 +8,7 @@
 ## Install the Package
 
 ```bash
-pip install django-md-editor
+pip install django-markdown-widget
 ```
 
 ## Add to Django Settings

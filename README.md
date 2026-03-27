@@ -2,13 +2,13 @@
 
 A GitHub-style markdown editor widget for Django forms and admin.
 
-[![PyPI version](https://img.shields.io/pypi/v/django-md-editor.svg)](https://pypi.org/project/django-md-editor/)
-[![Python versions](https://img.shields.io/pypi/pyversions/django-md-editor.svg)](https://pypi.org/project/django-md-editor/)
+[![PyPI version](https://img.shields.io/pypi/v/django-markdown-widget.svg)](https://pypi.org/project/django-markdown-widget/)
+[![Python versions](https://img.shields.io/pypi/pyversions/django-markdown-widget.svg)](https://pypi.org/project/django-markdown-widget/)
 [![Django versions](https://img.shields.io/badge/django-5.2%2B-blue.svg)](https://www.djangoproject.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://ganiyevuz.github.io/django-md-editor/)
 
-**[Documentation](https://ganiyevuz.github.io/django-md-editor/)** | **[PyPI](https://pypi.org/project/django-md-editor/)** | **[GitHub](https://github.com/ganiyevuz/django-md-editor)**
+**[Documentation](https://ganiyevuz.github.io/django-md-editor/)** | **[PyPI](https://pypi.org/project/django-markdown-widget/)** | **[GitHub](https://github.com/ganiyevuz/django-md-editor)**
 
 ## Features
 
@@ -27,7 +27,7 @@ A GitHub-style markdown editor widget for Django forms and admin.
 ## Installation
 
 ```bash
-pip install django-md-editor
+pip install django-markdown-widget
 ```
 
 Add to your `INSTALLED_APPS` and include the URLs:
