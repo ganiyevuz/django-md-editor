@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from django.db.models import TextField
 
 from django_md_editor.widgets import MarkdownEditorWidget

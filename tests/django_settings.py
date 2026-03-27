@@ -3,6 +3,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
     "django.contrib.sessions",
+    "django.contrib.admin",
+    "django.contrib.messages",
     "django_md_editor",
 ]
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
@@ -17,6 +19,7 @@ ROOT_URLCONF = "tests.urls"
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
 ]
 TEMPLATES = [
     {

@@ -1,149 +1,219 @@
-# Django Package Template
+# django-md-editor
 
-A modern, minimal, and production-ready template for building and publishing reusable Django packages to PyPI.
+A GitHub-style markdown editor widget for Django forms and admin.
 
-[GitHub: ganiyevuz/django-package-template](https://github.com/ganiyevuz/django-package-template)
-
----
+[![PyPI version](https://img.shields.io/pypi/v/django-md-editor.svg)](https://pypi.org/project/django-md-editor/)
+[![Python versions](https://img.shields.io/pypi/pyversions/django-md-editor.svg)](https://pypi.org/project/django-md-editor/)
+[![Django versions](https://img.shields.io/badge/django-5.2%2B-blue.svg)](https://www.djangoproject.com/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Features
 
-- Clean and minimal project structure for Django package development
-- CI/CD via GitHub Actions for testing and automated PyPI publishing
-- Modern dependency management with [uv](https://github.com/astral-sh/uv)
-- Python 3.11-3.13 & Django 5.2+ support
-- Fast linting and formatting with [ruff](https://github.com/astral-sh/ruff)
-- Preconfigured pytest and coverage
-- One-command release script
-- Makefile with common development commands
-- MIT License
+- GitHub-flavored markdown editor with live preview
+- Toolbar with common formatting actions (headings, bold, italic, code, tables, etc.)
+- Image and file uploads with drag & drop support
+- Light, dark, and auto theme support
+- Django admin integration via one-line mixin
+- Template tag and filter for rendering markdown in templates
+- Pluggable renderer and upload handler architecture
+- Automatic media cleanup for orphaned uploads
+- Management command for bulk orphan detection
+- Zero hard dependencies beyond Django (markdown library is optional)
+- Keyboard shortcuts (Ctrl+B, Ctrl+I, Ctrl+K, etc.)
 
----
-
-## Quickstart
-
-### 1. Create a New Package from Template
+## Installation
 
 ```bash
-git clone https://github.com/ganiyevuz/django-package-template.git your-package-name
-cd your-package-name
-
-rm -rf .git
-git init
-git add .
-git commit -m "Initial commit using Django package template"
+pip install django-md-editor
 ```
 
-### 2. Customize Metadata
+Add to your `INSTALLED_APPS` and include the URLs:
 
-Edit the following files:
+```python
+# settings.py
+INSTALLED_APPS = [
+    ...
+    "django_md_editor",
+]
 
-* `pyproject.toml` - package name, version, author, dependencies
-* `README.md` - your own documentation
-* `LICENSE` - update copyright
+# urls.py
+from django.urls import include, path
 
-Create your Django app inside `src/` (e.g. `src/your_package_name/`).
+urlpatterns = [
+    ...
+    path("md-editor/", include("django_md_editor.urls")),
+]
+```
 
-### 3. Set Up the Development Environment
+For server-side rendering, install a markdown library:
 
 ```bash
-# Install uv (if not installed)
-curl -LsSf https://astral.sh/uv/install.sh | sh
+pip install markdown
+```
 
-# Create virtual environment
-uv venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+## Quick Start
 
-# Install dependencies with dev tools
+### Form Widget
+
+```python
+from django.forms import ModelForm
+from django_md_editor import MarkdownEditorWidget
+
+class PostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = ["title", "content"]
+        widgets = {
+            "content": MarkdownEditorWidget(),
+        }
+```
+
+### Django Admin
+
+```python
+from django.contrib import admin
+from django_md_editor import MarkdownEditorAdminMixin
+
+@admin.register(Post)
+class PostAdmin(MarkdownEditorAdminMixin, admin.ModelAdmin):
+    list_display = ["title", "created_at"]
+    markdown_fields = ["content"]  # omit to apply to all TextFields
+```
+
+### Template Rendering
+
+```django
+{% load md_editor %}
+
+{# As a filter (recommended) #}
+{{ post.content|markdown }}
+
+{# As a tag #}
+{% markdown post.content %}
+```
+
+### Media Cleanup
+
+```python
+from django_md_editor import MarkdownCleanupMixin
+
+class Post(MarkdownCleanupMixin, models.Model):
+    content = models.TextField()
+    # markdown_cleanup_fields = ["content"]  # optional: limit to specific fields
+```
+
+Enable in settings:
+
+```python
+MD_EDITOR = {
+    "CLEANUP_MEDIA": True,
+}
+```
+
+Bulk cleanup via management command:
+
+```bash
+python manage.py cleanup_markdown_media --dry-run
+python manage.py cleanup_markdown_media
+```
+
+## Configuration
+
+All settings are optional and go under `MD_EDITOR` in your Django settings:
+
+```python
+MD_EDITOR = {
+    # Pluggable backend classes
+    "RENDERER_CLASS": "django_md_editor.renderers.DefaultRenderer",
+    "UPLOAD_HANDLER_CLASS": "django_md_editor.uploads.DefaultUploadHandler",
+
+    # Toolbar buttons
+    "TOOLBAR": [
+        "heading", "bold", "italic", "strikethrough", "separator",
+        "quote", "code", "code-block", "link", "image", "separator",
+        "ordered-list", "unordered-list", "task-list", "separator",
+        "horizontal-rule", "table", "details", "separator",
+        "highlight", "superscript", "subscript", "separator",
+        "attach", "mention", "ref", "separator",
+        "undo", "redo", "fullscreen",
+    ],
+
+    # Upload settings
+    "ALLOWED_UPLOAD_TYPES": ["image/png", "image/jpeg", "image/gif", "image/webp"],
+    "MAX_UPLOAD_SIZE": 10 * 1024 * 1024,  # 10 MB
+    "UPLOAD_PATH": "md-editor/uploads/%Y/%m/",
+
+    # Editor defaults
+    "DEFAULT_HEIGHT": "300px",
+    "PLACEHOLDER": "Add your comment here...",
+    "THEME": "auto",  # "light", "dark", or "auto"
+
+    # Security
+    "REQUIRE_AUTH": True,
+
+    # Media cleanup
+    "CLEANUP_MEDIA": False,
+}
+```
+
+## Custom Renderer
+
+```python
+from django_md_editor import BaseRenderer
+
+class MyRenderer(BaseRenderer):
+    def render(self, markdown_text: str) -> str:
+        import markdown_it
+        md = markdown_it.MarkdownIt()
+        return md.render(markdown_text)
+```
+
+```python
+MD_EDITOR = {
+    "RENDERER_CLASS": "myapp.renderers.MyRenderer",
+}
+```
+
+## Custom Upload Handler
+
+```python
+from django_md_editor import BaseUploadHandler
+
+class S3UploadHandler(BaseUploadHandler):
+    def validate(self, file):
+        # your validation logic
+        pass
+
+    def save(self, file) -> str:
+        # save to S3 and return the URL
+        return url
+```
+
+```python
+MD_EDITOR = {
+    "UPLOAD_HANDLER_CLASS": "myapp.uploads.S3UploadHandler",
+}
+```
+
+## Development
+
+```bash
+git clone https://github.com/ganiyevuz/django-md-editor.git
+cd django-md-editor
 uv sync --group dev
+make test
+make lint
 ```
 
-### 4. Start Coding
-
-Implement your Django package inside `src/your_package_name/`:
-
-```text
-src/
-└── your_package_name/
-    ├── __init__.py
-    ├── apps.py
-    ├── models.py
-    ├── views.py
-    ├── urls.py
-    ├── admin.py
-    ├── templates/
-    └── static/
-```
-
-### 5. Use the Makefile
+Run the example app:
 
 ```bash
-make install    # Install with dev dependencies
-make lint       # Check code style with ruff
-make format     # Format code with ruff
-make test       # Run tests with pytest
-make coverage   # Run tests with coverage
-make dist       # Build distributable package
-make release v=0.1.0  # Lint, test, bump version, tag, and push
-make clean      # Clean build artifacts
+cd example
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
 ```
-
----
-
-## GitHub Actions: CI/CD
-
-This template includes GitHub Actions for:
-
-* Running linting and tests on pushes and PRs
-* Testing across Python 3.11-3.13 and Django 5.2+
-* Publishing to PyPI on version tag push (e.g., `v0.1.0`)
-
-### PyPI Configuration (Trusted Publishing)
-
-1. Go to [PyPI](https://pypi.org) and configure trusted publishing for your package
-2. Add a publishing environment named `pypi` in your GitHub repo settings
-
-### Release
-
-```bash
-# One-command release: lints, tests, bumps version, tags, and pushes
-make release v=0.1.0
-
-# If CI fails, run the same command again — it will prompt to replace the tag
-make release v=0.1.0
-```
-
----
-
-## Project Structure
-
-```text
-django-package-template/
-├── .github/workflows/    # GitHub Actions CI/CD
-├── scripts/release.sh    # Release automation script
-├── src/your_package/     # Your Django app/package
-├── tests/                # Unit tests (create this)
-├── pyproject.toml        # Project metadata and dependencies
-├── Makefile              # Development commands
-├── LICENSE               # MIT License
-├── README.md             # This file
-└── .gitignore
-```
-
----
-
-## Contributing
-
-```bash
-git checkout -b feature/my-feature
-git commit -m "Add my feature"
-git push origin feature/my-feature
-```
-
-Then open a Pull Request.
-
----
 
 ## License
 
-Licensed under the MIT License. See [LICENSE](LICENSE) for details.
+MIT License. See [LICENSE](LICENSE) for details.

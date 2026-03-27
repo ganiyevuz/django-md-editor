@@ -33,11 +33,9 @@ def load_upload_handler() -> Any:
 
 
 class AuthRequiredMixin:
-    """Mixin that returns 401 when REQUIRE_AUTH is True and user is not authenticated."""
+    """Returns 401 when REQUIRE_AUTH is True and user is unauthenticated."""
 
-    def dispatch(
-        self, request: HttpRequest, *args: Any, **kwargs: Any
-    ) -> JsonResponse:
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> JsonResponse:
         if get_setting("REQUIRE_AUTH") and not request.user.is_authenticated:
             return JsonResponse({"error": "Authentication required"}, status=401)
         return super().dispatch(request, *args, **kwargs)

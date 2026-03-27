@@ -1,9 +1,12 @@
+from __future__ import annotations
+
+from abc import ABC, abstractmethod
 from html import escape
 
 
-class BaseRenderer:
-    def render(self, markdown_text: str) -> str:
-        raise NotImplementedError
+class BaseRenderer(ABC):
+    @abstractmethod
+    def render(self, markdown_text: str) -> str: ...
 
 
 class DefaultRenderer(BaseRenderer):

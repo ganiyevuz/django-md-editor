@@ -138,3 +138,6 @@ Desktop.ini
 .coverage.*
 coverage.xml
 htmlcov/
+
+# Superpowers brainstorm sessions
+.superpowers/

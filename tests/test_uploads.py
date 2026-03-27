@@ -8,14 +8,9 @@ from django_md_editor.uploads import BaseUploadHandler, DefaultUploadHandler
 
 
 class BaseUploadHandlerTests(TestCase):
-    def test_save_raises_not_implemented(self):
-        handler = BaseUploadHandler()
-        with self.assertRaises(NotImplementedError):
-            handler.save(None)
-
-    def test_validate_does_nothing_by_default(self):
-        handler = BaseUploadHandler()
-        handler.validate(None)  # Should not raise
+    def test_cannot_instantiate_abstract_class(self):
+        with self.assertRaises(TypeError):
+            BaseUploadHandler()
 
 
 class DefaultUploadHandlerTests(TestCase):

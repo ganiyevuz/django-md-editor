@@ -1,16 +1,43 @@
+from __future__ import annotations
+
+from typing import Any
+
 from django.conf import settings
 
 DEFAULTS = {
     "RENDERER_CLASS": "django_md_editor.renderers.DefaultRenderer",
     "UPLOAD_HANDLER_CLASS": "django_md_editor.uploads.DefaultUploadHandler",
     "TOOLBAR": [
-        "heading", "bold", "italic", "strikethrough", "separator",
-        "quote", "code", "code-block", "link", "image", "separator",
-        "ordered-list", "unordered-list", "task-list", "separator",
-        "horizontal-rule", "table", "details", "separator",
-        "highlight", "superscript", "subscript", "separator",
-        "attach", "mention", "ref", "separator",
-        "undo", "redo", "fullscreen",
+        "heading",
+        "bold",
+        "italic",
+        "strikethrough",
+        "separator",
+        "quote",
+        "code",
+        "code-block",
+        "link",
+        "image",
+        "separator",
+        "ordered-list",
+        "unordered-list",
+        "task-list",
+        "separator",
+        "horizontal-rule",
+        "table",
+        "details",
+        "separator",
+        "highlight",
+        "superscript",
+        "subscript",
+        "separator",
+        "attach",
+        "mention",
+        "ref",
+        "separator",
+        "undo",
+        "redo",
+        "fullscreen",
     ],
     "ALLOWED_UPLOAD_TYPES": [
         "image/png",
@@ -25,10 +52,11 @@ DEFAULTS = {
     "PLACEHOLDER": "Add your comment here...",
     "REQUIRE_AUTH": True,
     "THEME": "auto",
+    "CLEANUP_MEDIA": False,
 }
 
 
-def get_setting(key: str):
+def get_setting(key: str) -> Any:
     if key not in DEFAULTS:
         raise KeyError(f"Unknown django-md-editor setting: {key}")
     user_settings = getattr(settings, "MD_EDITOR", {})

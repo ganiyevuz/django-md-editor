@@ -1,23 +1,27 @@
+from __future__ import annotations
+
 import time
+from abc import ABC, abstractmethod
 
 from django.core.exceptions import ValidationError
 from django.core.files.storage import default_storage
+from django.core.files.uploadedfile import UploadedFile
 
 from django_md_editor.settings import get_setting
 
 
-class BaseUploadHandler:
-    def validate(self, file) -> None:
+class BaseUploadHandler(ABC):
+    def validate(self, file: UploadedFile) -> None:  # noqa: B027
         pass
 
-    def save(self, file) -> str:
-        raise NotImplementedError
+    @abstractmethod
+    def save(self, file: UploadedFile) -> str: ...
 
 
 class DefaultUploadHandler(BaseUploadHandler):
     """Uses Django's default_storage backend."""
 
-    def validate(self, file) -> None:
+    def validate(self, file: UploadedFile) -> None:
         allowed_types = get_setting("ALLOWED_UPLOAD_TYPES")
         if file.content_type not in allowed_types:
             raise ValidationError(
@@ -30,7 +34,7 @@ class DefaultUploadHandler(BaseUploadHandler):
                 f"File size {file.size} bytes exceeds maximum of {max_size} bytes."
             )
 
-    def save(self, file) -> str:
+    def save(self, file: UploadedFile) -> str:
         upload_path = get_setting("UPLOAD_PATH")
         timestamp = str(int(time.time()))
         path = time.strftime(upload_path) + timestamp + "_" + file.name

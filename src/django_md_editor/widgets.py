@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 
 from django.forms.widgets import Textarea
@@ -11,8 +13,8 @@ class MarkdownEditorWidget(Textarea):
     def __init__(
         self,
         toolbar=None,
-        preview_url="/md-editor/preview/",
-        upload_url="/md-editor/upload/",
+        preview_url="/md-editor/preview",
+        upload_url="/md-editor/upload",
         height=None,
         placeholder=None,
         attrs=None,

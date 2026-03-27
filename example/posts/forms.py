@@ -1,4 +1,5 @@
-from django.forms import ModelForm, CharField
+from django.forms import ModelForm
+
 from django_md_editor.widgets import MarkdownEditorWidget
 from posts.models import Post
 
