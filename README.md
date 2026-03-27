@@ -6,6 +6,9 @@ A GitHub-style markdown editor widget for Django forms and admin.
 [![Python versions](https://img.shields.io/pypi/pyversions/django-md-editor.svg)](https://pypi.org/project/django-md-editor/)
 [![Django versions](https://img.shields.io/badge/django-5.2%2B-blue.svg)](https://www.djangoproject.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://ganiyevuz.github.io/django-md-editor/)
+
+**[Documentation](https://ganiyevuz.github.io/django-md-editor/)** | **[PyPI](https://pypi.org/project/django-md-editor/)** | **[GitHub](https://github.com/ganiyevuz/django-md-editor)**
 
 ## Features
 
