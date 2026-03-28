@@ -15,11 +15,11 @@ A GitHub-style markdown editor widget for Django forms and admin.
 
 | Dark (default) | Light |
 |:-:|:-:|
-| ![Write](docs/screenshots/editor-write.png) | ![Light](docs/screenshots/editor-light.png) |
+| ![Write](https://raw.githubusercontent.com/ganiyevuz/django-md-editor/main/docs/screenshots/editor-write.png) | ![Light](https://raw.githubusercontent.com/ganiyevuz/django-md-editor/main/docs/screenshots/editor-light.png) |
 
 | Split View | Preview |
 |:-:|:-:|
-| ![Split](docs/screenshots/editor-split.png) | ![Preview](docs/screenshots/editor-preview.png) |
+| ![Split](https://raw.githubusercontent.com/ganiyevuz/django-md-editor/main/docs/screenshots/editor-split.png) | ![Preview](https://raw.githubusercontent.com/ganiyevuz/django-md-editor/main/docs/screenshots/editor-preview.png) |
 
 ## Features
 
