@@ -6,43 +6,63 @@ The toolbar is configured as a list of button names. You can customize it global
 
 | Button | Description |
 |--------|-------------|
-| `heading` | Cycling heading (H1 > H2 > H3 > paragraph) |
 | `bold` | Bold text |
 | `italic` | Italic text |
 | `strikethrough` | Strikethrough text |
+| `highlight` | Highlighted text (`==text==`) |
+| `heading` | Cycling heading (H1 > H2 > H3 > paragraph) |
 | `quote` | Blockquote |
+| `horizontal-rule` | Horizontal rule (`---`) |
 | `code` | Inline code |
 | `code-block` | Fenced code block |
-| `link` | Hyperlink |
-| `image` | Image |
-| `ordered-list` | Numbered list |
 | `unordered-list` | Bullet list |
+| `ordered-list` | Numbered list |
 | `task-list` | Checkbox list |
-| `horizontal-rule` | Horizontal rule (`---`) |
+| `link` | Hyperlink |
+| `image` | Image (opens file picker for images) |
+| `video` | Video (opens file picker for videos) |
+| `document` | Document (opens file picker for documents) |
 | `table` | Table |
 | `details` | Collapsible details/summary block |
-| `highlight` | Highlighted text (`==text==`) |
+| `embed` | Embed (YouTube, Vimeo, CodePen, or raw iframe) |
 | `superscript` | Superscript (`^text^`) |
 | `subscript` | Subscript (`~text~`) |
-| `attach` | File attachment |
-| `mention` | Mention (`@username`) |
-| `ref` | Reference (`#123`) |
+| `attach` | Generic file attachment (any file type) |
 | `undo` | Undo |
 | `redo` | Redo |
-| `fullscreen` | Toggle fullscreen |
+| `fullscreen` | Toggle fullscreen (also available in tabs bar) |
 | `separator` | Visual divider between button groups |
 
-## Global Configuration
+## Default Toolbar
+
+Grouped by purpose:
 
 ```python
-MD_EDITOR = {
-    "TOOLBAR": [
-        "heading", "bold", "italic", "separator",
-        "link", "image", "code", "separator",
-        "unordered-list", "ordered-list", "separator",
-        "undo", "redo", "fullscreen",
-    ],
-}
+"TOOLBAR": [
+    # Text formatting
+    "bold", "italic", "strikethrough", "highlight",
+    "separator",
+    # Headings & structure
+    "heading", "quote", "horizontal-rule",
+    "separator",
+    # Code
+    "code", "code-block",
+    "separator",
+    # Lists
+    "unordered-list", "ordered-list", "task-list",
+    "separator",
+    # Links & media
+    "link", "image", "video", "document",
+    "separator",
+    # Rich blocks
+    "table", "details", "embed",
+    "separator",
+    # Extras
+    "superscript", "subscript",
+    "separator",
+    # Actions (right-aligned)
+    "undo", "redo",
+]
 ```
 
 ## Per-Widget Configuration
@@ -74,3 +94,27 @@ MarkdownEditorWidget(
     placeholder="Leave a comment...",
 )
 ```
+
+## Full-Featured Toolbar
+
+```python
+MarkdownEditorWidget(
+    toolbar=[
+        "bold", "italic", "strikethrough", "highlight", "separator",
+        "heading", "quote", "horizontal-rule", "separator",
+        "code", "code-block", "separator",
+        "unordered-list", "ordered-list", "task-list", "separator",
+        "link", "image", "video", "document", "separator",
+        "table", "details", "embed", "separator",
+        "superscript", "subscript", "separator",
+        "undo", "redo",
+    ],
+)
+```
+
+## Header Controls
+
+These are always present in the tabs bar (not configurable via toolbar):
+
+- **Autosave toggle** -- switch to enable/disable draft saving
+- **Fullscreen button** -- expands editor to fill the viewport

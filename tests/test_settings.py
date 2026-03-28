@@ -20,7 +20,7 @@ class GetSettingTests(TestCase):
 
     def test_returns_default_max_upload_size(self):
         result = get_setting("MAX_UPLOAD_SIZE")
-        assert result == 10 * 1024 * 1024
+        assert result == 50 * 1024 * 1024
 
     def test_returns_default_allowed_upload_types(self):
         result = get_setting("ALLOWED_UPLOAD_TYPES")
@@ -30,10 +30,6 @@ class GetSettingTests(TestCase):
     def test_returns_default_upload_path(self):
         result = get_setting("UPLOAD_PATH")
         assert result == "md-editor/uploads/%Y/%m/"
-
-    def test_returns_default_client_renderer(self):
-        result = get_setting("CLIENT_RENDERER")
-        assert result == "django_markdown_widget/js/marked.min.js"
 
     def test_returns_default_height(self):
         result = get_setting("DEFAULT_HEIGHT")

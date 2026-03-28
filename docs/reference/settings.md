@@ -11,7 +11,7 @@ Accessing a setting programmatically:
 ```python
 from django_markdown_widget.settings import get_setting
 
-value = get_setting("MAX_UPLOAD_SIZE")  # returns 10485760 if not overridden
+value = get_setting("MAX_UPLOAD_SIZE")  # returns 52428800 if not overridden
 ```
 
 ## Full Defaults
@@ -21,23 +21,28 @@ value = get_setting("MAX_UPLOAD_SIZE")  # returns 10485760 if not overridden
     "RENDERER_CLASS": "django_markdown_widget.renderers.DefaultRenderer",
     "UPLOAD_HANDLER_CLASS": "django_markdown_widget.uploads.DefaultUploadHandler",
     "TOOLBAR": [
-        "heading", "bold", "italic", "strikethrough", "separator",
-        "quote", "code", "code-block", "link", "image", "separator",
-        "ordered-list", "unordered-list", "task-list", "separator",
-        "horizontal-rule", "table", "details", "separator",
-        "highlight", "superscript", "subscript", "separator",
-        "attach", "mention", "ref", "separator",
-        "undo", "redo", "fullscreen",
+        "bold", "italic", "strikethrough", "highlight", "separator",
+        "heading", "quote", "horizontal-rule", "separator",
+        "code", "code-block", "separator",
+        "unordered-list", "ordered-list", "task-list", "separator",
+        "link", "image", "video", "document", "separator",
+        "table", "details", "embed", "separator",
+        "superscript", "subscript", "separator",
+        "undo", "redo",
     ],
     "ALLOWED_UPLOAD_TYPES": [
-        "image/png",
-        "image/jpeg",
-        "image/gif",
-        "image/webp",
+        "image/png", "image/jpeg", "image/gif", "image/webp",
+        "video/mp4", "video/webm", "video/ogg",
+        "application/pdf", "application/zip", "application/x-tar",
+        "application/gzip", "text/plain", "text/csv", "application/json",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
     ],
-    "MAX_UPLOAD_SIZE": 10485760,
+    "MAX_UPLOAD_SIZE": 52428800,
     "UPLOAD_PATH": "md-editor/uploads/%Y/%m/",
-    "CLIENT_RENDERER": "django_markdown_widget/js/marked.min.js",
+    "TEMP_UPLOAD_PATH": "md-editor/tmp/",
+    "TEMP_MAX_AGE": 86400,
     "DEFAULT_HEIGHT": "300px",
     "PLACEHOLDER": "Add your comment here...",
     "THEME": "auto",

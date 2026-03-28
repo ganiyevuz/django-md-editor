@@ -6,11 +6,12 @@ All settings are optional. Configure them under the `MD_EDITOR` dictionary in yo
 MD_EDITOR = {
     "RENDERER_CLASS": "django_markdown_widget.renderers.DefaultRenderer",
     "UPLOAD_HANDLER_CLASS": "django_markdown_widget.uploads.DefaultUploadHandler",
-    "TOOLBAR": ["heading", "bold", "italic", ...],
-    "ALLOWED_UPLOAD_TYPES": ["image/png", "image/jpeg", "image/gif", "image/webp"],
-    "MAX_UPLOAD_SIZE": 10 * 1024 * 1024,
+    "TOOLBAR": ["bold", "italic", "strikethrough", "highlight", ...],
+    "ALLOWED_UPLOAD_TYPES": ["image/png", "image/jpeg", "video/mp4", ...],
+    "MAX_UPLOAD_SIZE": 50 * 1024 * 1024,
     "UPLOAD_PATH": "md-editor/uploads/%Y/%m/",
-    "CLIENT_RENDERER": "django_markdown_widget/js/marked.min.js",
+    "TEMP_UPLOAD_PATH": "md-editor/tmp/",
+    "TEMP_MAX_AGE": 86400,
     "DEFAULT_HEIGHT": "300px",
     "PLACEHOLDER": "Add your comment here...",
     "THEME": "auto",
@@ -25,7 +26,7 @@ MD_EDITOR = {
 
 : **Default:** `"django_markdown_widget.renderers.DefaultRenderer"`
 
-  Dotted Python path to the server-side markdown renderer class. Must extend `BaseRenderer`.
+  Dotted Python path to the server-side markdown renderer class. Must extend `BaseRenderer`. Output is sanitized to prevent XSS.
 
 ### `UPLOAD_HANDLER_CLASS`
 
@@ -35,19 +36,19 @@ MD_EDITOR = {
 
 ### `TOOLBAR`
 
-: **Default:** Full toolbar with all available buttons
+: **Default:** Full toolbar grouped by purpose
 
   List of toolbar button names. Use `"separator"` to add visual dividers. See [Toolbar Customization](../customization/toolbar.md) for available buttons.
 
 ### `ALLOWED_UPLOAD_TYPES`
 
-: **Default:** `["image/png", "image/jpeg", "image/gif", "image/webp"]`
+: **Default:** Images (png, jpeg, gif, webp), videos (mp4, webm, ogg), documents (pdf, zip, tar, gz, txt, csv, json, docx, xlsx, pptx)
 
-  MIME types accepted for file uploads.
+  MIME types accepted for file uploads. `image/svg+xml` is intentionally excluded from defaults due to XSS risk.
 
 ### `MAX_UPLOAD_SIZE`
 
-: **Default:** `10485760` (10 MB)
+: **Default:** `52428800` (50 MB)
 
   Maximum upload file size in bytes.
 
@@ -55,13 +56,19 @@ MD_EDITOR = {
 
 : **Default:** `"md-editor/uploads/%Y/%m/"`
 
-  Storage path for uploaded files. Supports `strftime` format codes for date-based directories.
+  Permanent storage path for uploaded files. Supports `strftime` format codes.
 
-### `CLIENT_RENDERER`
+### `TEMP_UPLOAD_PATH`
 
-: **Default:** `"django_markdown_widget/js/marked.min.js"`
+: **Default:** `"md-editor/tmp/"`
 
-  Path to the client-side markdown renderer JavaScript file (served as a static file).
+  Temporary storage path for files during editing. Files are moved to `UPLOAD_PATH` on form submit.
+
+### `TEMP_MAX_AGE`
+
+: **Default:** `86400` (24 hours)
+
+  Maximum age in seconds for temp files. Expired files are deleted by the `cleanup_markdown_media` management command.
 
 ### `DEFAULT_HEIGHT`
 
@@ -85,7 +92,7 @@ MD_EDITOR = {
 
 : **Default:** `True`
 
-  When `True`, the preview and upload endpoints require authenticated users. Set to `False` for public-facing forms.
+  When `True`, the upload and finalize endpoints require authenticated users. Set to `False` for public-facing forms.
 
 ### `CLEANUP_MEDIA`
 

@@ -29,8 +29,9 @@
     subscript: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><text x="0" y="11" font-size="12" font-weight="bold" font-family="sans-serif" fill="currentColor">X</text><text x="10" y="15" font-size="8" font-weight="bold" font-family="sans-serif" fill="currentColor">2</text></svg>', title: "Subscript", action: "subscript" },
     "details": { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25ZM8 10a.75.75 0 0 1-.53-.22l-2.5-2.5a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L8 8.19l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734l-2.5 2.5A.75.75 0 0 1 8 10Z"/></svg>', title: "Collapsible Section", action: "details" },
     attach: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M12.212 3.02a1.753 1.753 0 0 0-2.478.003l-5.83 5.83a3.007 3.007 0 0 0-.88 2.127c0 .795.315 1.551.88 2.116a2.996 2.996 0 0 0 4.243 0l5.113-5.113a.75.75 0 0 1 1.06 1.06L9.207 14.16a4.506 4.506 0 0 1-6.364 0 4.496 4.496 0 0 1-1.318-3.187A4.506 4.506 0 0 1 2.843 7.79l5.83-5.83a3.003 3.003 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-5.83 5.83a1.503 1.503 0 0 1-2.122 0 1.503 1.503 0 0 1 0-2.122l5.113-5.113a.75.75 0 0 1 1.06 1.06l-5.113 5.113a.003.003 0 0 0 0 .002.002.002 0 0 0 .002 0l5.83-5.83a1.503 1.503 0 0 0 0-2.123Z"/></svg>', title: "Attach File", action: "attach" },
-    mention: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M4.75 7.5A3.25 3.25 0 0 1 8 4.25a3.25 3.25 0 0 1 3.25 3.25v.583c0 .478-.387.917-.917.917a.916.916 0 0 1-.916-.917V5.167a.75.75 0 0 0-1.5 0v.034A3.21 3.21 0 0 0 6.25 4.75a2.75 2.75 0 0 0 0 5.5c.843 0 1.595-.377 2.1-.975.385.52.97.892 1.65.975v.5A4.75 4.75 0 1 1 12.75 6v1.5c0 1.175-.775 2.167-1.867 2.417A3.24 3.24 0 0 1 8 12.25a3.25 3.25 0 0 1-3.25-3.25V7.5Zm1.5 0a1.75 1.75 0 1 0 3.5 0 1.75 1.75 0 0 0-3.5 0Z"/></svg>', title: "Mention", action: "mention" },
-    ref: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.752 1.752 0 0 1 1 7.775Zm1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>', title: "Reference", action: "ref" },
+    video: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 3.75C0 2.784.784 2 1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25Zm1.75-.25a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25ZM6 10.559V5.442a.25.25 0 0 1 .379-.215l4.264 2.559a.25.25 0 0 1 0 .428L6.379 10.773A.25.25 0 0 1 6 10.559Z"/></svg>', title: "Upload Video", action: "video" },
+    document: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M3.75 1.5a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011ZM3.75 0h5.086c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 11.75 16h-8A1.75 1.75 0 0 1 2 14.25V1.75C2 .784 2.784 0 3.75 0Z"/></svg>', title: "Upload Document", action: "document" },
+    embed: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM3.5 6.25a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5Z"/></svg>', title: "Embed (YouTube, etc.)", action: "embed" },
     undo: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1.22 6.28a.749.749 0 0 1 0-1.06l3.5-3.5a.749.749 0 1 1 1.06 1.06L3.561 5h7.188a4.75 4.75 0 0 1 0 9.5H5.75a.75.75 0 0 1 0-1.5h4.999a3.25 3.25 0 0 0 0-6.5H3.561l2.22 2.22a.749.749 0 1 1-1.06 1.06Z"/></svg>', title: "Undo (Ctrl+Z)", action: "undo", align: "right" },
     redo: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M14.78 6.28a.749.749 0 0 0 0-1.06l-3.5-3.5a.749.749 0 1 0-1.06 1.06L12.439 5H5.25a4.75 4.75 0 0 0 0 9.5h4.999a.75.75 0 0 0 0-1.5H5.25a3.25 3.25 0 0 1 0-6.5h7.189l-2.22 2.22a.749.749 0 1 0 1.06 1.06Z"/></svg>', title: "Redo (Ctrl+Shift+Z)", action: "redo", align: "right" },
     fullscreen: { icon: '<svg viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1.75 10a.75.75 0 0 1 .75.75v2.5c0 .138.112.25.25.25h2.5a.75.75 0 0 1 0 1.5h-2.5A1.75 1.75 0 0 1 1 13.25v-2.5a.75.75 0 0 1 .75-.75Zm12.5 0a.75.75 0 0 1 .75.75v2.5A1.75 1.75 0 0 1 13.25 15h-2.5a.75.75 0 0 1 0-1.5h2.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 .75-.75ZM2.75 1h2.5a.75.75 0 0 1 0 1.5h-2.5a.25.25 0 0 0-.25.25v2.5a.75.75 0 0 1-1.5 0v-2.5C1 1.784 1.784 1 2.75 1Zm10.5 0A1.75 1.75 0 0 1 15 2.75v2.5a.75.75 0 0 1-1.5 0v-2.5a.25.25 0 0 0-.25-.25h-2.5a.75.75 0 0 1 0-1.5Z"/></svg>', title: "Fullscreen", action: "fullscreen", align: "right" },
@@ -51,10 +52,178 @@
     if (!toolbarConfig.length) {
       toolbarConfig = Object.keys(TOOLBAR_BUTTONS);
     }
-    const previewUrl = container.dataset.previewUrl || "";
     const uploadUrl = container.dataset.uploadUrl || "";
+    const finalizeUrl = container.dataset.finalizeUrl || "";
 
     const textarea = container.querySelector(".md-editor-textarea");
+
+    // Undo/redo history
+    var undoStack = [{ value: textarea.value || "", selStart: 0, selEnd: 0 }];
+    var redoStack = [];
+    var isUndoRedo = false;
+
+    function pushUndo() {
+      if (isUndoRedo) return;
+      var state = { value: textarea.value, selStart: textarea.selectionStart, selEnd: textarea.selectionEnd };
+      var last = undoStack[undoStack.length - 1];
+      if (last && last.value === state.value) return;
+      undoStack.push(state);
+      if (undoStack.length > 100) undoStack.shift();
+      redoStack.length = 0;
+    }
+
+    function performUndo() {
+      if (undoStack.length <= 1) return;
+      isUndoRedo = true;
+      redoStack.push(undoStack.pop());
+      var state = undoStack[undoStack.length - 1];
+      textarea.value = state.value;
+      textarea.selectionStart = state.selStart;
+      textarea.selectionEnd = state.selEnd;
+      triggerInput(textarea);
+      isUndoRedo = false;
+    }
+
+    function performRedo() {
+      if (!redoStack.length) return;
+      isUndoRedo = true;
+      var state = redoStack.pop();
+      undoStack.push(state);
+      textarea.value = state.value;
+      textarea.selectionStart = state.selStart;
+      textarea.selectionEnd = state.selEnd;
+      triggerInput(textarea);
+      isUndoRedo = false;
+    }
+
+    textarea.addEventListener("input", function () { pushUndo(); });
+
+    // Autosave to localStorage
+    var storageKey = "md-editor:" + window.location.pathname + ":" + (textarea.name || textarea.id || "default");
+    var saveTimer = null;
+    var autosaveEnabled = true;
+    var autosaveCheckbox = container.querySelector(".md-editor-autosave-checkbox");
+    var autosaveStatus = container.querySelector(".md-editor-footer-autosave-status");
+
+    function formatTime(ts) {
+      var d = new Date(ts);
+      var h = d.getHours();
+      var m = d.getMinutes();
+      var ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      return h + ":" + (m < 10 ? "0" : "") + m + " " + ampm;
+    }
+
+    function showStatus(text) {
+      if (autosaveStatus) autosaveStatus.textContent = text;
+    }
+
+    function autosave() {
+      if (!autosaveEnabled) return;
+      showStatus("Saving\u2026");
+      try {
+        var now = Date.now();
+        localStorage.setItem(storageKey, JSON.stringify({
+          value: textarea.value,
+          timestamp: now,
+        }));
+        showStatus("Saved at " + formatTime(now));
+      } catch (e) {
+        showStatus("Save failed");
+      }
+    }
+
+    function scheduleAutosave() {
+      if (!autosaveEnabled) return;
+      if (saveTimer) clearTimeout(saveTimer);
+      saveTimer = setTimeout(autosave, 500);
+    }
+
+    // Toggle autosave
+    if (autosaveCheckbox) {
+      autosaveCheckbox.checked = autosaveEnabled;
+      autosaveCheckbox.addEventListener("change", function () {
+        autosaveEnabled = this.checked;
+        if (!autosaveEnabled) {
+          if (saveTimer) clearTimeout(saveTimer);
+          showStatus("");
+        }
+      });
+    }
+
+    // Restore draft on load
+    try {
+      var saved = JSON.parse(localStorage.getItem(storageKey));
+      if (saved && saved.value) {
+        var maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+        if (Date.now() - saved.timestamp < maxAge) {
+          var serverValue = textarea.value || "";
+          if (!serverValue || serverValue === textarea.defaultValue) {
+            if (saved.value !== serverValue) {
+              textarea.value = saved.value;
+              undoStack[0] = { value: saved.value, selStart: 0, selEnd: 0 };
+            }
+          }
+          showStatus("Draft from " + formatTime(saved.timestamp));
+        } else {
+          localStorage.removeItem(storageKey);
+        }
+      }
+    } catch (e) { /* parse error or unavailable */ }
+
+    textarea.addEventListener("input", scheduleAutosave);
+
+    // Finalize uploads and clear draft on form submit
+    var form = textarea.closest("form");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        try { localStorage.removeItem(storageKey); } catch (ex) {}
+        showStatus("");
+
+        if (!finalizeUrl) return;
+
+        // Check if content has any temp upload URLs
+        var text = textarea.value;
+        if (text.indexOf("/md-editor/tmp/") === -1) return;
+
+        // Prevent default submit, finalize first
+        e.preventDefault();
+        fetch(finalizeUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCSRFToken(),
+          },
+          body: JSON.stringify({ text: text }),
+        })
+          .then(function (response) {
+            if (!response.ok) throw new Error("Finalize failed");
+            return response.json();
+          })
+          .then(function (data) {
+            var replacements = data.replacements || {};
+            var updated = textarea.value;
+            for (var oldUrl in replacements) {
+              updated = updated.split(oldUrl).join(replacements[oldUrl]);
+            }
+            textarea.value = updated;
+            form.submit();
+          })
+          .catch(function () {
+            // Submit anyway even if finalize fails
+            form.submit();
+          });
+      });
+    }
+
+    // Fullscreen button in tabs bar
+    var fullscreenBtn = container.querySelector(".md-editor-fullscreen-btn");
+    if (fullscreenBtn) {
+      fullscreenBtn.addEventListener("click", function () {
+        container.classList.toggle("md-editor--fullscreen");
+      });
+    }
+
     const toolbar = container.querySelector(".md-editor-toolbar");
     const tabs = container.querySelectorAll(".md-editor-tab");
     const writePanels = container.querySelectorAll(".md-editor-write");
@@ -89,7 +258,7 @@
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "md-editor-toolbar-btn";
-      btn.title = def.title;
+      btn.setAttribute("aria-label", def.title);
       btn.dataset.action = def.action;
       btn.innerHTML = def.icon;
       if (def.style) btn.style.cssText = def.style;
@@ -102,42 +271,91 @@
       toolbar.appendChild(btn);
     });
 
-    // Wire tab switching
+    // Wire tab switching (write / split / preview)
+    var currentMode = "write";
+    var splitInputHandler = null;
+    var previewContent = container.querySelector(".md-editor-preview-content");
+
+    function setMode(mode) {
+      currentMode = mode;
+      tabs.forEach((t) => t.classList.remove("md-editor-tab--active"));
+      container.querySelector('[data-tab="' + mode + '"]').classList.add("md-editor-tab--active");
+      container.classList.remove("md-editor--split");
+      // Reset split panel widths
+      writePanels.forEach(function (p) { p.style.width = ""; });
+      previewPanels.forEach(function (p) { p.style.width = ""; });
+
+      // Remove live-update listener from split mode
+      if (splitInputHandler) {
+        textarea.removeEventListener("input", splitInputHandler);
+        splitInputHandler = null;
+      }
+
+      if (mode === "write") {
+        writePanels.forEach((p) => { p.classList.remove("md-editor-panel--hidden"); p.classList.add("md-editor-panel--active"); });
+        previewPanels.forEach((p) => { p.classList.add("md-editor-panel--hidden"); p.classList.remove("md-editor-panel--active"); });
+        toolbar.style.display = "";
+      } else if (mode === "preview") {
+        writePanels.forEach((p) => { p.classList.add("md-editor-panel--hidden"); p.classList.remove("md-editor-panel--active"); });
+        previewPanels.forEach((p) => { p.classList.remove("md-editor-panel--hidden"); p.classList.add("md-editor-panel--active"); });
+        toolbar.style.display = "none";
+        if (previewContent) renderPreview(textarea.value, previewContent);
+      } else if (mode === "split") {
+        container.classList.add("md-editor--split");
+        writePanels.forEach((p) => { p.classList.remove("md-editor-panel--hidden"); p.classList.add("md-editor-panel--active"); });
+        previewPanels.forEach((p) => { p.classList.remove("md-editor-panel--hidden"); p.classList.add("md-editor-panel--active"); });
+        toolbar.style.display = "";
+        if (previewContent) renderPreview(textarea.value, previewContent);
+
+        // Live-update preview as user types
+        splitInputHandler = function () {
+          if (previewContent) renderPreview(textarea.value, previewContent);
+        };
+        textarea.addEventListener("input", splitInputHandler);
+      }
+    }
+
     tabs.forEach((tab) => {
       tab.addEventListener("click", function () {
-        const targetTab = this.dataset.tab;
-
-        tabs.forEach((t) => t.classList.remove("md-editor-tab--active"));
-        this.classList.add("md-editor-tab--active");
-
-        if (targetTab === "preview") {
-          writePanels.forEach((p) => {
-            p.classList.add("md-editor-panel--hidden");
-            p.classList.remove("md-editor-panel--active");
-          });
-          previewPanels.forEach((p) => {
-            p.classList.remove("md-editor-panel--hidden");
-            p.classList.add("md-editor-panel--active");
-          });
-          toolbar.style.display = "none";
-
-          const previewContent = container.querySelector(".md-editor-preview-content");
-          if (previewContent) {
-            renderPreview(textarea.value, previewContent, previewUrl);
-          }
-        } else {
-          previewPanels.forEach((p) => {
-            p.classList.add("md-editor-panel--hidden");
-            p.classList.remove("md-editor-panel--active");
-          });
-          writePanels.forEach((p) => {
-            p.classList.remove("md-editor-panel--hidden");
-            p.classList.add("md-editor-panel--active");
-          });
-          toolbar.style.display = "";
-        }
+        setMode(this.dataset.tab);
       });
     });
+
+    // Wire draggable split divider
+    var divider = container.querySelector(".md-editor-divider");
+    if (divider) {
+      var body = container.querySelector(".md-editor-body");
+      var writePanel = container.querySelector(".md-editor-write");
+      var previewPanel = container.querySelector(".md-editor-preview");
+
+      divider.addEventListener("mousedown", startDrag);
+      divider.addEventListener("touchstart", startDrag, { passive: false });
+
+      function startDrag(e) {
+        if (!container.classList.contains("md-editor--split")) return;
+        e.preventDefault();
+        divider.classList.add("md-editor-divider--dragging");
+        var isTouch = e.type === "touchstart";
+
+        function onMove(ev) {
+          var clientX = isTouch ? ev.touches[0].clientX : ev.clientX;
+          var rect = body.getBoundingClientRect();
+          var offset = clientX - rect.left;
+          var pct = Math.max(20, Math.min(80, (offset / rect.width) * 100));
+          writePanel.style.width = "calc(" + pct + "% - 4.5px)";
+          previewPanel.style.width = "calc(" + (100 - pct) + "% - 4.5px)";
+        }
+
+        function onUp() {
+          divider.classList.remove("md-editor-divider--dragging");
+          document.removeEventListener(isTouch ? "touchmove" : "mousemove", onMove);
+          document.removeEventListener(isTouch ? "touchend" : "mouseup", onUp);
+        }
+
+        document.addEventListener(isTouch ? "touchmove" : "mousemove", onMove);
+        document.addEventListener(isTouch ? "touchend" : "mouseup", onUp);
+      }
+    }
 
     // Wire keyboard shortcuts on textarea
     textarea.addEventListener("keydown", function (e) {
@@ -164,6 +382,12 @@
       } else if (ctrl && e.shiftKey && e.key === "8") {
         e.preventDefault();
         handleAction("unordered-list", textarea, container, fileInput, uploadUrl);
+      } else if (ctrl && !e.shiftKey && e.key === "z") {
+        e.preventDefault();
+        performUndo();
+      } else if (ctrl && e.shiftKey && e.key === "z") {
+        e.preventDefault();
+        performRedo();
       } else if (e.key === "Escape") {
         if (container.classList.contains("md-editor--fullscreen")) {
           container.classList.remove("md-editor--fullscreen");
@@ -217,7 +441,6 @@
         fileInput.click();
       });
     }
-  }
 
   // ---------------------------------------------------------------------------
   // 3. handleAction
@@ -285,28 +508,40 @@
         insertFootnote(textarea);
         break;
       case "superscript":
-        wrapSelection(textarea, "<sup>", "</sup>");
+        wrapSelection(textarea, "^", "^");
         break;
       case "subscript":
-        wrapSelection(textarea, "<sub>", "</sub>");
+        wrapSelection(textarea, "~", "~");
         break;
       case "details":
         insertDetails(textarea);
         break;
       case "attach":
-        if (fileInput) fileInput.click();
+        if (fileInput) {
+          fileInput.setAttribute("accept", "*/*");
+          fileInput.click();
+        }
         break;
-      case "mention":
-        insertAtCursor(textarea, "@");
+      case "video":
+        if (fileInput) {
+          fileInput.setAttribute("accept", "video/*");
+          fileInput.click();
+        }
         break;
-      case "ref":
-        insertAtCursor(textarea, "#");
+      case "document":
+        if (fileInput) {
+          fileInput.setAttribute("accept", ".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.tar,.gz,.txt,.csv,.json");
+          fileInput.click();
+        }
+        break;
+      case "embed":
+        insertEmbed(textarea);
         break;
       case "undo":
-        document.execCommand("undo");
+        performUndo();
         break;
       case "redo":
-        document.execCommand("redo");
+        performRedo();
         break;
       case "fullscreen":
         container.classList.toggle("md-editor--fullscreen");
@@ -533,6 +768,46 @@
     triggerInput(textarea);
   }
 
+  function insertEmbed(textarea) {
+    var input = prompt("Paste a URL or embed code (YouTube, Vimeo, CodePen, etc.):");
+    if (!input) return;
+    input = input.trim();
+
+    var embedHtml = "";
+
+    // User pasted an <iframe> embed code directly — use it as-is (sanitized)
+    if (input.toLowerCase().indexOf("<iframe") !== -1) {
+      embedHtml = sanitizeHtml(input);
+    } else {
+      var youtubeMatch = input.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]+)/);
+      var vimeoMatch = input.match(/vimeo\.com\/(\d+)/);
+      var codepenMatch = input.match(/codepen\.io\/([\w-]+)\/pen\/([\w-]+)/);
+
+      if (youtubeMatch) {
+        embedHtml = '<iframe width="100%" height="400" src="https://www.youtube.com/embed/' + escapeHtml(youtubeMatch[1]) + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+      } else if (vimeoMatch) {
+        embedHtml = '<iframe width="100%" height="400" src="https://player.vimeo.com/video/' + escapeHtml(vimeoMatch[1]) + '" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+      } else if (codepenMatch) {
+        embedHtml = '<iframe width="100%" height="400" src="https://codepen.io/' + escapeHtml(codepenMatch[1]) + '/embed/' + escapeHtml(codepenMatch[2]) + '?default-tab=result" frameborder="0"></iframe>';
+      } else {
+        embedHtml = '<iframe width="100%" height="400" src="' + escapeHtml(input) + '" frameborder="0"></iframe>';
+      }
+    }
+
+    insertAtCursor(textarea, "\n" + embedHtml + "\n");
+  }
+
+  function showToast(container, message, type) {
+    var toast = document.createElement("div");
+    toast.className = "md-editor-toast md-editor-toast--" + (type || "error");
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(function () {
+      toast.classList.add("md-editor-toast--fade");
+      setTimeout(function () { toast.remove(); }, 300);
+    }, 4000);
+  }
+
   function insertAtCursor(textarea, text) {
     const start = textarea.selectionStart;
     const end = textarea.selectionEnd;
@@ -548,55 +823,57 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 5. renderPreview
+  // 5. Initialize markdown-it with highlight.js
   // ---------------------------------------------------------------------------
-  function renderPreview(markdown, previewEl, serverUrl) {
+  var md = null;
+  if (typeof markdownit !== "undefined") {
+    var mdOptions = { html: true, linkify: true, typographer: true };
+    if (typeof hljs !== "undefined") {
+      mdOptions.highlight = function (code, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      };
+    }
+    md = markdownit(mdOptions);
+
+    // Load bundled plugins
+    if (typeof markdownitMark !== "undefined") md.use(markdownitMark);
+    if (typeof markdownitSub !== "undefined") md.use(markdownitSub);
+    if (typeof markdownitSup !== "undefined") md.use(markdownitSup);
+    if (typeof markdownitTaskLists !== "undefined") md.use(markdownitTaskLists);
+  }
+
+  // ---------------------------------------------------------------------------
+  // 6. renderPreview (client-side only)
+  // ---------------------------------------------------------------------------
+  // Client-side HTML sanitizer for preview
+  var SAFE_TAGS = /^(p|br|hr|h[1-6]|em|strong|del|s|mark|sub|sup|ul|ol|li|a|img|video|source|pre|code|blockquote|table|thead|tbody|tr|th|td|details|summary|input|div|span)$/i;
+  var DANGEROUS_TAG_RE = /<(script|style|object|embed|form|textarea|select|button)[^>]*>[\s\S]*?<\/\1>/gi;
+  var EVENT_ATTR_RE = /\s+on\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]*)/gi;
+  var JS_URL_RE = /(href|src)\s*=\s*["']?\s*javascript:/gi;
+
+  function sanitizeHtml(html) {
+    html = html.replace(DANGEROUS_TAG_RE, "");
+    html = html.replace(EVENT_ATTR_RE, "");
+    html = html.replace(JS_URL_RE, '$1=""');
+    return html;
+  }
+
+  function renderPreview(markdown, previewEl) {
     if (!markdown) {
       previewEl.innerHTML = "<p style='color:var(--md-text-muted)'>Nothing to preview</p>";
       return;
     }
 
-    // Client-side render if marked is available
-    var clientRendered = false;
-    if (typeof marked !== "undefined" && typeof marked.parse === "function") {
+    if (md) {
       try {
-        previewEl.innerHTML = marked.parse(markdown);
-        clientRendered = true;
+        previewEl.innerHTML = sanitizeHtml(md.render(markdown)); // eslint-disable-line
       } catch (e) {
         previewEl.textContent = markdown;
       }
     } else {
-      previewEl.textContent = markdown;
-    }
-
-    // Server-side render if URL provided
-    // Only replace client render if server returns actual HTML (contains tags)
-    if (serverUrl) {
-      fetch(serverUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCSRFToken(),
-        },
-        body: JSON.stringify({ text: markdown }),
-      })
-        .then(function (response) {
-          if (!response.ok) throw new Error("Server error: " + response.status);
-          return response.json();
-        })
-        .then(function (data) {
-          var html = data && (data.html !== undefined ? data.html : data.content);
-          if (html && (!clientRendered || /<[a-z][\s\S]*>/i.test(html))) {
-            previewEl.innerHTML = html;
-          }
-        })
-        .catch(function () {
-          // Keep client-side render on failure; if no client render, show plain text
-          if (!clientRendered) {
-            previewEl.textContent = markdown;
-          }
-        });
-    } else if (typeof marked === "undefined") {
       previewEl.textContent = markdown;
     }
   }
@@ -622,18 +899,32 @@
         body: formData,
       })
         .then(function (response) {
-          if (!response.ok) throw new Error("Upload failed");
-          return response.json();
+          return response.json().then(function (data) {
+            if (!response.ok) {
+              var errMsg = data.error || "Upload failed";
+              throw new Error(errMsg);
+            }
+            return data;
+          });
         })
         .then(function (data) {
           const url = data.url || data.file_url || data.location || "";
           const name = data.name || file.name;
-          const isImage = file.type.startsWith("image/");
-          const replacement = isImage ? "![" + name + "](" + url + ")" : "[" + name + "](" + url + ")";
+          const contentType = data.type || file.type || "";
+          var replacement;
+          if (contentType.startsWith("image/")) {
+            replacement = "![" + name + "](" + url + ")";
+          } else if (contentType.startsWith("video/")) {
+            var autoplay = confirm("Autoplay this video?");
+            replacement = '<video src="' + escapeHtml(url) + '"' + (autoplay ? " autoplay muted loop" : "") + ' controls controlslist="nodownload noplaybackrate" disablepictureinpicture width="100%">' + escapeHtml(name) + "</video>";
+          } else {
+            replacement = "[" + name + "](" + url + ")";
+          }
           replacePlaceholder(textarea, placeholder, replacement);
         })
-        .catch(function () {
-          replacePlaceholder(textarea, placeholder, "Upload failed: " + file.name);
+        .catch(function (err) {
+          replacePlaceholder(textarea, placeholder, "");
+          showToast(container, "Upload failed: " + err.message, "error");
         });
     });
   }
@@ -649,7 +940,14 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 7. getCSRFToken
+  // 7. escapeHtml
+  // ---------------------------------------------------------------------------
+  function escapeHtml(str) {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  // ---------------------------------------------------------------------------
+  // 8. getCSRFToken
   // ---------------------------------------------------------------------------
   function getCSRFToken() {
     // Try cookie
@@ -666,6 +964,8 @@
 
     return "";
   }
+
+  } // end initEditor
 
   // ---------------------------------------------------------------------------
   // 8. initAll

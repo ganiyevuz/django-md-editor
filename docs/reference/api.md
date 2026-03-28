@@ -10,7 +10,7 @@
     from django_markdown_widget import MarkdownEditorWidget
     ```
 
-    **Parameters:** `toolbar`, `preview_url`, `upload_url`, `height`, `placeholder`, `attrs`
+    **Parameters:** `toolbar`, `upload_url`, `finalize_url`, `height`, `placeholder`, `attrs`
 
 ### `MarkdownEditorAdminMixin`
 
@@ -50,7 +50,7 @@
 
 ### `DefaultRenderer`
 
-:   Default renderer using python-markdown. Falls back to HTML-escaped text.
+:   Default renderer using python-markdown with HTML sanitization. Falls back to HTML-escaped text if python-markdown is not installed.
 
     ```python
     from django_markdown_widget import DefaultRenderer
@@ -71,17 +71,22 @@
 
 ### `DefaultUploadHandler`
 
-:   Default handler using Django's `default_storage`.
+:   Default handler using Django's `default_storage`. Saves to temp storage, with `finalize()` to move to permanent.
 
     ```python
     from django_markdown_widget import DefaultUploadHandler
     ```
 
+    **Methods:**
+
+    - `save(file) -> str` -- saves to `TEMP_UPLOAD_PATH`, returns URL
+    - `finalize(temp_url) -> str` -- moves from temp to `UPLOAD_PATH`, returns new URL
+
 ## Utility Functions
 
 ### `extract_media_urls(text: str) -> set[str]`
 
-:   Extract all `![alt](url)` image URLs from markdown text.
+:   Extract all media URLs from markdown text -- images (`![](url)`), links (`[](url)`), and HTML `src` attributes (`<video>`, `<img>`, `<iframe>`).
 
     ```python
     from django_markdown_widget import extract_media_urls
@@ -114,27 +119,25 @@
 
 ## URL Endpoints
 
-Both endpoints are registered under the `django_markdown_widget` app namespace.
-
-### `POST /md-editor/preview`
-
-:   Render markdown to HTML.
-
-    **Request body** (JSON): `{"text": "**bold**"}`
-
-    **Response**: `{"html": "<p><strong>bold</strong></p>"}`
-
-    Requires authentication by default (`REQUIRE_AUTH`).
+Both endpoints are registered under the `django_markdown_widget` app namespace. Protected by `@csrf_protect` and `REQUIRE_AUTH`.
 
 ### `POST /md-editor/upload`
 
-:   Upload a file.
+:   Upload a file to temp storage.
 
     **Request**: multipart form with `file` field.
 
-    **Response**: `{"url": "/media/md-editor/uploads/2026/03/1234_photo.png", "name": "photo.png"}`
+    **Response**: `{"url": "/media/md-editor/tmp/1234_photo.png", "name": "photo.png", "type": "image/png"}`
 
-    Requires authentication by default (`REQUIRE_AUTH`).
+### `POST /md-editor/finalize`
+
+:   Move referenced temp files to permanent storage.
+
+    **Request body** (JSON): `{"text": "![img](/media/md-editor/tmp/1234_photo.png)"}`
+
+    **Response**: `{"replacements": {"/media/md-editor/tmp/1234_photo.png": "/media/md-editor/uploads/2026/03/1234_photo.png"}}`
+
+    Called automatically by the editor on form submit.
 
 ## Template Tags & Filters
 
@@ -142,8 +145,8 @@ Load with `{% load markdown_widget %}`.
 
 ### `{% markdown text %}`
 
-:   Render markdown text as HTML (simple tag).
+:   Render markdown text as sanitized HTML (simple tag).
 
 ### `{{ text|markdown }}`
 
-:   Render markdown text as HTML (filter).
+:   Render markdown text as sanitized HTML (filter).

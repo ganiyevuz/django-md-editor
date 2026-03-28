@@ -13,15 +13,15 @@ class MarkdownEditorWidget(Textarea):
     def __init__(
         self,
         toolbar=None,
-        preview_url="/md-editor/preview",
         upload_url="/md-editor/upload",
+        finalize_url="/md-editor/finalize",
         height=None,
         placeholder=None,
         attrs=None,
     ):
         self.toolbar = toolbar
-        self.preview_url = preview_url
         self.upload_url = upload_url
+        self.finalize_url = finalize_url
         self.height = height
         self.placeholder = placeholder
         super().__init__(attrs=attrs)
@@ -31,22 +31,28 @@ class MarkdownEditorWidget(Textarea):
         context["widget"]["toolbar"] = (
             self.toolbar if self.toolbar is not None else get_setting("TOOLBAR")
         )
-        context["widget"]["toolbar_json"] = json.dumps(context["widget"]["toolbar"])
-        context["widget"]["preview_url"] = self.preview_url
+        context["widget"]["toolbar_json"] = json.dumps(
+            context["widget"]["toolbar"]
+        ).replace("</", r"<\/")
         context["widget"]["upload_url"] = self.upload_url
+        context["widget"]["finalize_url"] = self.finalize_url
         context["widget"]["height"] = self.height or get_setting("DEFAULT_HEIGHT")
         context["widget"]["placeholder"] = (
             self.placeholder
             if self.placeholder is not None
             else get_setting("PLACEHOLDER")
         )
-        context["widget"]["client_renderer"] = get_setting("CLIENT_RENDERER")
         context["widget"]["theme"] = get_setting("THEME")
         return context
 
     class Media:
         css = {"all": ("django_markdown_widget/css/editor.css",)}
         js = (
-            "django_markdown_widget/js/marked.min.js",
+            "django_markdown_widget/js/markdown-it.min.js",
+            "django_markdown_widget/js/markdown-it-mark.min.js",
+            "django_markdown_widget/js/markdown-it-sub.min.js",
+            "django_markdown_widget/js/markdown-it-sup.min.js",
+            "django_markdown_widget/js/markdown-it-task-lists.min.js",
+            "django_markdown_widget/js/highlight.min.js",
             "django_markdown_widget/js/editor.js",
         )

@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "django-markdown-widget"
-version = "1.0.1"
+version = "2.0.0"
 description = "A GitHub-style markdown editor widget for Django forms"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -71,3 +71,11 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 DJANGO_SETTINGS_MODULE = "tests.django_settings"
 pythonpath = ["."]
+addopts = "--cov=django_markdown_widget --cov-report=term-missing --cov-report=html --cov-report=xml"
+
+[tool.coverage.run]
+source = ["django_markdown_widget"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 85

@@ -2,12 +2,12 @@
 
 ## `cleanup_markdown_media`
 
-Finds and deletes orphaned media files that were uploaded through the markdown editor but are no longer referenced in any model's `TextField`.
+Finds and deletes orphaned media files and expired temp uploads.
 
 ### Usage
 
 ```bash
-# Preview orphaned files without deleting
+# Preview what would be deleted
 python manage.py cleanup_markdown_media --dry-run
 
 # Delete orphaned files
@@ -18,31 +18,40 @@ python manage.py cleanup_markdown_media
 
 | Flag | Description |
 |------|-------------|
-| `--dry-run` | List orphaned files without deleting them |
+| `--dry-run` | List files without deleting them |
 
 ### How It Works
 
-1. Iterates over all registered Django models
-2. Reads every `TextField` value and extracts `![alt](url)` image URLs
-3. Walks the upload directory tree (default: `md-editor/uploads/`)
-4. Compares stored files against referenced URLs
-5. Deletes (or lists) files that aren't referenced anywhere
+The command runs two cleanup phases:
+
+**Phase 1: Expired temp files**
+
+- Walks the `TEMP_UPLOAD_PATH` directory (`md-editor/tmp/`)
+- Deletes files older than `TEMP_MAX_AGE` (default 24 hours)
+- These are files uploaded during editing but never finalized (user abandoned the form)
+
+**Phase 2: Orphaned permanent files**
+
+- Scans every `TextField` across all Django models
+- Extracts media URLs from markdown content (images, videos, links, embeds)
+- Walks the `UPLOAD_PATH` directory tree
+- Deletes files not referenced by any model
 
 ### Example Output
 
 ```
 $ python manage.py cleanup_markdown_media --dry-run
-  [dry-run] Would delete: md-editor/uploads/2026/01/1706000000_old-image.png
-  [dry-run] Would delete: md-editor/uploads/2026/02/1709000000_unused.jpg
+  [dry-run] Would delete temp: md-editor/tmp/1706000000_abandoned.png
 
-Would delete 2 orphaned file(s).
+Would delete 1 expired temp file(s).
+  [dry-run] Would delete: md-editor/uploads/2026/01/1706000000_old-image.png
+
+Would delete 1 orphaned file(s).
 ```
 
 ### Scheduling
 
-Consider running this periodically via cron or a task scheduler:
-
 ```bash
-# Crontab: run weekly on Sunday at 3 AM
-0 3 * * 0 cd /path/to/project && python manage.py cleanup_markdown_media
+# Crontab: run daily at 3 AM
+0 3 * * * cd /path/to/project && python manage.py cleanup_markdown_media
 ```

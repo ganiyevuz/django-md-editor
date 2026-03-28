@@ -17,7 +17,8 @@ class MarkdownEditorWidgetTests(TestCase):
         widget = MarkdownEditorWidget()
         js = str(widget.media)
         assert "django_markdown_widget/js/editor.js" in js
-        assert "django_markdown_widget/js/marked.min.js" in js
+        assert "django_markdown_widget/js/markdown-it.min.js" in js
+        assert "django_markdown_widget/js/highlight.min.js" in js
 
     def test_custom_toolbar(self):
         toolbar = ["bold", "italic"]
@@ -34,11 +35,6 @@ class MarkdownEditorWidgetTests(TestCase):
         widget = MarkdownEditorWidget()
         ctx = widget.get_context("content", "test", {})
         assert ctx["widget"]["height"] == "300px"
-
-    def test_custom_preview_url(self):
-        widget = MarkdownEditorWidget(preview_url="/custom/preview/")
-        ctx = widget.get_context("content", "test", {})
-        assert ctx["widget"]["preview_url"] == "/custom/preview/"
 
     def test_custom_upload_url(self):
         widget = MarkdownEditorWidget(upload_url="/custom/upload/")

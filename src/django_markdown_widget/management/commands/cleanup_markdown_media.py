@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import time
+
 from django.apps import apps
 from django.core.files.storage import default_storage
 from django.core.management.base import BaseCommand
@@ -10,7 +12,7 @@ from django_markdown_widget.settings import get_setting
 
 
 class Command(BaseCommand):
-    help = "Find and delete orphaned media files uploaded via the markdown editor."
+    help = "Find and delete orphaned media files and expired temp uploads."
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -21,13 +23,77 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         dry_run = options["dry_run"]
+        deleted_count = 0
+
+        # 1. Clean expired temp uploads
+        deleted_count += self._clean_temp_uploads(dry_run)
+
+        # 2. Clean orphaned permanent uploads
+        deleted_count += self._clean_orphaned_uploads(dry_run)
+
+        if deleted_count == 0:
+            self.stdout.write(self.style.SUCCESS("No orphaned files found."))
+
+    def _clean_temp_uploads(self, dry_run: bool) -> int:
+        temp_prefix = get_setting("TEMP_UPLOAD_PATH")
+        max_age = get_setting("TEMP_MAX_AGE")
+        now = time.time()
+
+        try:
+            expired = self._find_expired_temps(temp_prefix, now, max_age)
+        except FileNotFoundError:
+            return 0
+
+        for path in expired:
+            if dry_run:
+                self.stdout.write(f"  [dry-run] Would delete temp: {path}")
+            else:
+                default_storage.delete(path)
+                self.stdout.write(f"  Deleted temp: {path}")
+
+        if expired:
+            label = "Would delete" if dry_run else "Deleted"
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"\n{label} {len(expired)} expired temp file(s)."
+                )
+            )
+        return len(expired)
+
+    def _find_expired_temps(
+        self, prefix: str, now: float, max_age: int
+    ) -> list[str]:
+        expired = []
+        try:
+            dirs, files = default_storage.listdir(prefix)
+        except FileNotFoundError:
+            return expired
+
+        for filename in files:
+            full_path = prefix + filename
+            try:
+                modified = default_storage.get_modified_time(full_path)
+                age = now - modified.timestamp()
+                if age > max_age:
+                    expired.append(full_path)
+            except (OSError, NotImplementedError):
+                expired.append(full_path)
+
+        for dirname in dirs:
+            expired.extend(
+                self._find_expired_temps(prefix + dirname + "/", now, max_age)
+            )
+        return expired
+
+    def _clean_orphaned_uploads(self, dry_run: bool) -> int:
         upload_prefix = get_setting("UPLOAD_PATH").split("%")[0]
 
-        # Collect all media URLs referenced in any TextField across the project
         referenced_paths = set()
         for model in apps.get_models():
             text_fields = [
-                f.name for f in model._meta.get_fields() if isinstance(f, TextField)
+                f.name
+                for f in model._meta.get_fields()
+                if isinstance(f, TextField)
             ]
             if not text_fields:
                 continue
@@ -40,18 +106,10 @@ class Command(BaseCommand):
                         if path:
                             referenced_paths.add(path)
 
-        # List files in upload directory and find orphans
         try:
-            dirs, files = default_storage.listdir(upload_prefix)
+            orphaned = self._find_orphans(upload_prefix, referenced_paths)
         except FileNotFoundError:
-            self.stdout.write("No upload directory found. Nothing to clean up.")
-            return
-
-        orphaned = self._find_orphans(upload_prefix, referenced_paths)
-
-        if not orphaned:
-            self.stdout.write(self.style.SUCCESS("No orphaned files found."))
-            return
+            return 0
 
         for path in orphaned:
             if dry_run:
@@ -60,13 +118,18 @@ class Command(BaseCommand):
                 default_storage.delete(path)
                 self.stdout.write(f"  Deleted: {path}")
 
-        label = "Would delete" if dry_run else "Deleted"
-        self.stdout.write(
-            self.style.SUCCESS(f"\n{label} {len(orphaned)} orphaned file(s).")
-        )
+        if orphaned:
+            label = "Would delete" if dry_run else "Deleted"
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"\n{label} {len(orphaned)} orphaned file(s)."
+                )
+            )
+        return len(orphaned)
 
-    def _find_orphans(self, prefix: str, referenced: set[str]) -> list[str]:
-        """Recursively walk storage under prefix, return unreferenced paths."""
+    def _find_orphans(
+        self, prefix: str, referenced: set[str]
+    ) -> list[str]:
         orphaned = []
         try:
             dirs, files = default_storage.listdir(prefix)
@@ -79,5 +142,7 @@ class Command(BaseCommand):
                 orphaned.append(full_path)
 
         for dirname in dirs:
-            orphaned.extend(self._find_orphans(prefix + dirname + "/", referenced))
+            orphaned.extend(
+                self._find_orphans(prefix + dirname + "/", referenced)
+            )
         return orphaned

@@ -22,9 +22,17 @@ class ExtractMediaUrlsTests(TestCase):
         urls = extract_media_urls(text)
         assert len(urls) == 2
 
-    def test_ignores_regular_links(self):
+    def test_extracts_regular_links(self):
         text = "Check [this link](https://example.com)"
-        assert extract_media_urls(text) == set()
+        assert extract_media_urls(text) == {"https://example.com"}
+
+    def test_extracts_video_src(self):
+        text = '<video src="/media/md-editor/uploads/2026/03/demo.mp4" controls></video>'
+        assert extract_media_urls(text) == {"/media/md-editor/uploads/2026/03/demo.mp4"}
+
+    def test_extracts_document_link(self):
+        text = "[report.pdf](/media/md-editor/uploads/2026/03/report.pdf)"
+        assert extract_media_urls(text) == {"/media/md-editor/uploads/2026/03/report.pdf"}
 
     def test_empty_text(self):
         assert extract_media_urls("") == set()

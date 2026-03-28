@@ -6,23 +6,40 @@ A GitHub-style markdown editor widget for Django forms and admin.
 [![Python versions](https://img.shields.io/pypi/pyversions/django-markdown-widget.svg)](https://pypi.org/project/django-markdown-widget/)
 [![Django versions](https://img.shields.io/badge/django-5.2%2B-blue.svg)](https://www.djangoproject.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![codecov](https://codecov.io/gh/ganiyevuz/django-md-editor/graph/badge.svg)](https://codecov.io/gh/ganiyevuz/django-md-editor)
 [![Docs](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://ganiyevuz.github.io/django-md-editor/)
 
 **[Documentation](https://ganiyevuz.github.io/django-md-editor/)** | **[PyPI](https://pypi.org/project/django-markdown-widget/)** | **[GitHub](https://github.com/ganiyevuz/django-md-editor)**
 
+## Screenshots
+
+| Dark (default) | Light |
+|:-:|:-:|
+| ![Write](docs/screenshots/editor-write.png) | ![Light](docs/screenshots/editor-light.png) |
+
+| Split View | Preview |
+|:-:|:-:|
+| ![Split](docs/screenshots/editor-split.png) | ![Preview](docs/screenshots/editor-preview.png) |
+
 ## Features
 
-- GitHub-flavored markdown editor with live preview
-- Toolbar with common formatting actions (headings, bold, italic, code, tables, etc.)
-- Image and file uploads with drag & drop support
-- Light, dark, and auto theme support
-- Django admin integration via one-line mixin
-- Template tag and filter for rendering markdown in templates
-- Pluggable renderer and upload handler architecture
-- Automatic media cleanup for orphaned uploads
-- Management command for bulk orphan detection
-- Zero hard dependencies beyond Django (markdown library is optional)
-- Keyboard shortcuts (Ctrl+B, Ctrl+I, Ctrl+K, etc.)
+- **Three view modes** -- Write, Split (side-by-side live preview), Preview
+- **Syntax highlighting** for code blocks via highlight.js (GitHub themes)
+- **Rich toolbar** -- text formatting, headings, lists, code, tables, media, embeds
+- **Image, video, and document uploads** with drag & drop support
+- **Embed support** -- paste YouTube, Vimeo, CodePen URLs or raw `<iframe>` code
+- **Autosave** -- drafts saved to browser localStorage, survives page reloads
+- **Draggable split divider** -- resize editor/preview panels
+- **Temp upload system** -- files upload to temp storage, finalize on form submit
+- **Light, dark, and auto** theme support
+- **Django admin integration** via one-line mixin
+- **Template tag and filter** for server-side markdown rendering
+- **Pluggable renderer and upload handler** architecture
+- **Media cleanup** -- automatic orphaned file deletion + management command
+- **Custom undo/redo** history stack (100 states)
+- **HTML sanitization** on both client and server side
+- **Keyboard shortcuts** -- Ctrl+B, Ctrl+I, Ctrl+K, Ctrl+Z, etc.
+- **Zero hard dependencies** beyond Django
 
 ## Installation
 
@@ -48,7 +65,7 @@ urlpatterns = [
 ]
 ```
 
-For server-side rendering, install a markdown library:
+For server-side rendering (template tag/filter), install a markdown library:
 
 ```bash
 pip install markdown
@@ -120,6 +137,23 @@ python manage.py cleanup_markdown_media --dry-run
 python manage.py cleanup_markdown_media
 ```
 
+## Toolbar
+
+Default toolbar layout, grouped by purpose:
+
+| Group | Buttons |
+|-------|---------|
+| Text formatting | Bold, Italic, Strikethrough, Highlight |
+| Structure | Heading, Quote, Horizontal rule |
+| Code | Inline code, Code block |
+| Lists | Bullet, Numbered, Task list |
+| Links & media | Link, Image, Video, Document |
+| Rich blocks | Table, Collapsible section, Embed |
+| Extras | Superscript, Subscript |
+| Actions | Undo, Redo |
+
+Fullscreen toggle and autosave switch are in the top-right tabs bar.
+
 ## Configuration
 
 All settings are optional and go under `MD_EDITOR` in your Django settings:
@@ -130,21 +164,32 @@ MD_EDITOR = {
     "RENDERER_CLASS": "django_markdown_widget.renderers.DefaultRenderer",
     "UPLOAD_HANDLER_CLASS": "django_markdown_widget.uploads.DefaultUploadHandler",
 
-    # Toolbar buttons
+    # Toolbar buttons (grouped by purpose)
     "TOOLBAR": [
-        "heading", "bold", "italic", "strikethrough", "separator",
-        "quote", "code", "code-block", "link", "image", "separator",
-        "ordered-list", "unordered-list", "task-list", "separator",
-        "horizontal-rule", "table", "details", "separator",
-        "highlight", "superscript", "subscript", "separator",
-        "attach", "mention", "ref", "separator",
-        "undo", "redo", "fullscreen",
+        "bold", "italic", "strikethrough", "highlight", "separator",
+        "heading", "quote", "horizontal-rule", "separator",
+        "code", "code-block", "separator",
+        "unordered-list", "ordered-list", "task-list", "separator",
+        "link", "image", "video", "document", "separator",
+        "table", "details", "embed", "separator",
+        "superscript", "subscript", "separator",
+        "undo", "redo",
     ],
 
     # Upload settings
-    "ALLOWED_UPLOAD_TYPES": ["image/png", "image/jpeg", "image/gif", "image/webp"],
-    "MAX_UPLOAD_SIZE": 10 * 1024 * 1024,  # 10 MB
+    "ALLOWED_UPLOAD_TYPES": [
+        "image/png", "image/jpeg", "image/gif", "image/webp",
+        "video/mp4", "video/webm", "video/ogg",
+        "application/pdf", "application/zip", "text/plain", "text/csv",
+        "application/json",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+    ],
+    "MAX_UPLOAD_SIZE": 50 * 1024 * 1024,  # 50 MB
     "UPLOAD_PATH": "md-editor/uploads/%Y/%m/",
+    "TEMP_UPLOAD_PATH": "md-editor/tmp/",
+    "TEMP_MAX_AGE": 86400,  # 24 hours
 
     # Editor defaults
     "DEFAULT_HEIGHT": "300px",

@@ -6,25 +6,18 @@ from typing import Any
 
 from django.core.exceptions import ValidationError
 from django.http import HttpRequest, JsonResponse
+from django.utils.decorators import method_decorator
 from django.utils.module_loading import import_string
 from django.views import View
+from django.views.decorators.csrf import csrf_protect
 
+from django_markdown_widget.cleanup import _url_to_temp_path, extract_media_urls
 from django_markdown_widget.settings import get_setting
-
-
-@cache
-def _get_renderer_class() -> type:
-    return import_string(get_setting("RENDERER_CLASS"))
 
 
 @cache
 def _get_upload_handler_class() -> type:
     return import_string(get_setting("UPLOAD_HANDLER_CLASS"))
-
-
-def load_renderer() -> Any:
-    """Instantiate the configured markdown renderer."""
-    return _get_renderer_class()()
 
 
 def load_upload_handler() -> Any:
@@ -41,23 +34,7 @@ class AuthRequiredMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class PreviewView(AuthRequiredMixin, View):
-    """Renders markdown text to HTML via the configured renderer."""
-
-    http_method_names = ["post"]
-
-    def post(self, request: HttpRequest) -> JsonResponse:
-        try:
-            body = json.loads(request.body)
-            text = body.get("text", "")
-        except (json.JSONDecodeError, AttributeError):
-            text = request.POST.get("text", "")
-
-        renderer = load_renderer()
-        html = renderer.render(text)
-        return JsonResponse({"html": html})
-
-
+@method_decorator(csrf_protect, name="dispatch")
 class UploadView(AuthRequiredMixin, View):
     """Handles file uploads via the configured upload handler."""
 
@@ -76,4 +53,35 @@ class UploadView(AuthRequiredMixin, View):
             return JsonResponse({"error": " ".join(messages)}, status=400)
 
         url = handler.save(file)
-        return JsonResponse({"url": url, "name": file.name})
+        return JsonResponse({
+            "url": url,
+            "name": file.name,
+            "type": file.content_type or "",
+        })
+
+
+@method_decorator(csrf_protect, name="dispatch")
+class FinalizeView(AuthRequiredMixin, View):
+    """Moves referenced temp uploads to permanent storage, deletes the rest."""
+
+    http_method_names = ["post"]
+
+    def post(self, request: HttpRequest) -> JsonResponse:
+        try:
+            body = json.loads(request.body)
+            text = body.get("text", "")
+        except (json.JSONDecodeError, AttributeError):
+            text = request.POST.get("text", "")
+
+        urls = extract_media_urls(text)
+        handler = load_upload_handler()
+        replacements = {}
+
+        for url in urls:
+            temp_path = _url_to_temp_path(url)
+            if temp_path:
+                new_url = handler.finalize(url)
+                if new_url != url:
+                    replacements[url] = new_url
+
+        return JsonResponse({"replacements": replacements})

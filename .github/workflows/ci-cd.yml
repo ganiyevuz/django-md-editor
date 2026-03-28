@@ -47,7 +47,15 @@ jobs:
         run: uv run ruff check .
 
       - name: Test
-        run: uv run pytest --cov
+        run: uv run pytest
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.python-version == '3.13' && matrix.django-version == '5.2'
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: ganiyevuz/django-md-editor
+          files: coverage.xml
 
   publish:
     name: Publish to PyPI
