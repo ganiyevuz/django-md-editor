@@ -1,4 +1,4 @@
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 
 from django_markdown_widget.admin import MarkdownEditorAdminMixin  # noqa: E402
 from django_markdown_widget.cleanup import (  # noqa: E402
