@@ -5,7 +5,6 @@ from django.core.management import call_command
 from django.db.models import TextField
 from django.test import TestCase
 
-
 STORAGE_PATH = (
     "django_markdown_widget.management.commands.cleanup_markdown_media.default_storage"
 )
@@ -128,8 +127,8 @@ class CleanupMarkdownMediaTests(TestCase):
         mock_storage.listdir.side_effect = listdir_side_effect
 
         # File modified 48 hours ago (expired)
-        from datetime import datetime, timezone
-        old_time = datetime.fromtimestamp(0, tz=timezone.utc)
+        from datetime import UTC, datetime
+        old_time = datetime.fromtimestamp(0, tz=UTC)
         mock_storage.get_modified_time.return_value = old_time
 
         out = StringIO()

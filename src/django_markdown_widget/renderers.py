@@ -52,9 +52,15 @@ def _sanitize_html(html: str) -> str:
             attr_name = attr_match.group(1).lower()
             if attr_name not in allowed:
                 continue
-            attr_val = attr_match.group(2) or attr_match.group(3) or attr_match.group(4) or ""
+            attr_val = (
+                attr_match.group(2)
+                or attr_match.group(3)
+                or attr_match.group(4)
+                or ""
+            )
             # Block javascript: URLs
-            if attr_name in ("href", "src") and attr_val.strip().lower().startswith("javascript:"):
+            val_lower = attr_val.strip().lower()
+            if attr_name in ("href", "src") and val_lower.startswith("javascript:"):
                 continue
             safe_attrs.append(f'{attr_name}="{escape(attr_val)}"')
         attrs = (" " + " ".join(safe_attrs)) if safe_attrs else ""
